@@ -160,145 +160,160 @@
     
         /* Certificate styles */
         .certificate {
-            background: linear-gradient(135deg, #fff 0%, #f9f5ff 100%);
-            border: none;
-            border-radius: 10px;
-            padding: 40px;
+            background: linear-gradient(135deg, #fdfbff 0%, #f4efff 100%); /* Softer, lighter gradient */
+            border: 2px solid #dcd0ff; /* Subtle border */
+            border-radius: 15px; /* More rounded corners */
+            padding: 2.5rem; /* Increased padding for spacious feel */
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.1);
-            width: 557px; /* Fixed width */
-            height: 474px; /* Fixed height */
-            max-width: 100%; /* Ensure it's responsive on smaller screens */
-            box-sizing: border-box; /* Include padding in width/height */
-            background-color: #e0f2f7; /* Light blue background from image */
-            display: flex; /* Use flexbox for overall layout */
-            flex-direction: column;
-            justify-content: space-between; /* Distribute content top to bottom */
-            align-items: center; /* Center horizontally */
-        }
-
-        /* Ensure content scales within the fixed size */
-        .certificate-content {
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.15); /* Slightly stronger shadow */
+            width: 100%; /* Make it responsive */
+            max-width: 700px; /* Max width for desktop */
+            height: auto; /* Auto height for responsiveness */
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Align content to the top */
+            justify-content: space-between;
             align-items: center;
-            height: 100%; /* Take full height of parent */
-            padding: 0 20px; /* Add horizontal padding to prevent content from touching edges */
-            text-align: center;
+            text-align: center; /* Center align all content */
+            min-height: 450px; /* Minimum height for better appearance */
         }
-    
-        .certificate-border {
+
+        .certificate-inner-border {
             position: absolute;
             top: 15px;
             left: 15px;
             right: 15px;
             bottom: 15px;
-            border: 2px solid rgba(106, 13, 173, 0.2);
-            border-radius: 6px;
+            border: 1px dashed #a78bfa; /* Dashed border for elegance */
+            border-radius: 10px;
             pointer-events: none;
         }
-    
-        .certificate-title {
-            font-family: 'Playfair Display', serif;
-            color: #4a0080; /* Darker purple for main titles */
-            letter-spacing: 1px;
-            font-size: 2.5rem; /* Larger for "Prompt Engineering" */
-            line-height: 1.1;
-        }
 
-        .certificate-subtitle {
-            font-family: 'Playfair Display', serif;
-            color: #4a0080;
-            font-size: 1.8rem; /* For "10 Temel Prensip" */
-            margin-top: 0.5rem;
-        }
-    
-        .certificate-name-input {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            color: #333;
-            border-bottom: 2px solid rgba(106, 13, 173, 0.3);
-            transition: all 0.3s ease;
-            text-align: center; /* Center align input text */
-            width: 80%; /* Adjust width */
-            margin-top: 1rem;
-        }
-    
-        .certificate-name-input:focus {
-            border-color: rgba(106, 13, 173, 0.8);
-        }
-    
-        .certificate-seal {
-            position: absolute;
-            bottom: 30px; /* Adjust based on footer text height */
-            right: 40px;
-            width: 90px;
-            height: 90px;
-            opacity: 0.8;
-            color: #4a0080; /* Color for the SVG seal */
-        }
-
-        .congratulations-section {
-            background-color: #6A0DAD; /* Purple background from image */
-            width: calc(100% + 80px); /* Extend to cover padding */
-            margin-left: -40px; /* Compensate for left padding */
-            margin-right: -40px; /* Compensate for right padding */
-            margin-top: -40px; /* Compensate for top padding */
-            padding: 20px 0;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            text-align: center;
-            position: relative;
-            z-index: 0; /* Ensure it's behind other content if needed */
-        }
-
-        .congratulations-main-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem; /* Large "Tebrikler" */
-            font-weight: bold;
+        .certificate-header {
+            width: calc(100% + 5rem); /* Extend to cover padding */
+            margin-left: -2.5rem; /* Compensate for left padding */
+            margin-right: -2.5rem; /* Compensate for right padding */
+            margin-top: -2.5rem; /* Compensate for top padding */
+            background: linear-gradient(to right, #6A0DAD, #9b59b6); /* Gradient header */
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            margin-bottom: 0.5rem;
+            padding: 1.5rem 0;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            position: relative;
+            z-index: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
+        .certificate-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem; /* Larger "Tebrikler" */
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+    
         .certificate-main-content {
-            flex-grow: 1; /* Allow content to take available space */
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 1rem 0;
+            padding: 2rem 0; /* More vertical padding */
+            width: 100%;
+        }
+    
+        .certificate-title {
+            font-family: 'Playfair Display', serif;
+            color: #4a0080;
+            letter-spacing: 1.5px; /* Increased letter spacing */
+            font-size: 3rem; /* Prominent main title */
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
-        .certificate-footer-text {
-            width: 100%;
-            text-align: center;
-            font-size: 0.75rem; /* Smaller font for footer text */
+        .certificate-subtitle {
+            font-family: 'Poppins', sans-serif; /* Changed to Poppins for balance */
+            color: #6A0DAD; /* Purple for subtitle */
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+    
+        .certificate-description {
             color: #555;
-            margin-top: auto; /* Push to bottom */
-            padding-top: 1rem;
-            border-top: 1px solid rgba(0,0,0,0.1); /* Subtle separator */
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .certificate-name-input {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: #333;
+            border: none; /* Removed default border */
+            border-bottom: 2px solid #6A0DAD; /* Purple underline */
+            background-color: transparent; /* Transparent background */
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 90%; /* Wider input */
+            max-width: 400px;
+            padding: 0.5rem 0.25rem;
+            font-size: 2.2rem; /* Larger name font */
+            margin-bottom: 2rem; /* More space below name */
+            outline: none; /* Remove focus outline */
         }
     
-        /* References styles */
-        .reference-item {
-            position: relative;
-            padding-left: 20px;
+        .certificate-name-input:focus {
+            border-color: #4a0080; /* Darker purple on focus */
         }
     
-        .reference-item::before {
-            content: '';
+        .certificate-details {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 400px;
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 1rem;
+        }
+
+        .certificate-footer-signature {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #4a0080;
+            margin-top: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .certificate-footer-role {
+            font-family: 'Poppins', sans-serif;
+            color: #6A0DAD;
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+
+        .certificate-footer-linkedin {
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+        }
+
+        .certificate-legal-text {
+            font-size: 0.7rem;
+            color: #777;
+            margin-top: 1.5rem;
+            line-height: 1.4;
+            padding: 0 1rem;
+        }
+    
+        .certificate-seal {
             position: absolute;
-            left: 0;
-            top: 10px;
-            width: 8px;
-            height: 8px;
-            background-color: #6A0DAD;
-            border-radius: 50%;
+            bottom: 20px; /* Adjusted position */
+            right: 20px; /* Adjusted position */
+            width: 80px; /* Slightly smaller */
+            height: 80px;
+            opacity: 0.7; /* Slightly less opaque */
+            color: #6A0DAD; /* Purple color for the SVG seal */
         }
     
         /* Mobile responsive adjustments */
@@ -308,15 +323,48 @@
             }
             
             .certificate {
-                width: 100%; /* Full width on mobile */
-                height: auto; /* Auto height to prevent overflow */
-                padding: 20px; /* Adjust padding for mobile */
+                padding: 1.5rem; /* Adjust padding for mobile */
+                min-height: 400px;
+            }
+
+            .certificate-header {
+                width: calc(100% + 3rem); /* Adjust for mobile padding */
+                margin-left: -1.5rem;
+                margin-right: -1.5rem;
+                margin-top: -1.5rem;
+            }
+
+            .certificate-header h2 {
+                font-size: 2.2rem;
             }
             
+            .certificate-title {
+                font-size: 2.2rem; /* Smaller title on mobile */
+            }
+
+            .certificate-subtitle {
+                font-size: 1.2rem; /* Smaller subtitle on mobile */
+            }
+
+            .certificate-description {
+                font-size: 0.95rem;
+            }
+
+            .certificate-name-input {
+                font-size: 1.8rem; /* Smaller name font on mobile */
+                width: 95%;
+            }
+
+            .certificate-details {
+                flex-direction: column; /* Stack details on mobile */
+                gap: 0.5rem;
+                align-items: center;
+            }
+
             .certificate-seal {
-                width: 70px;
-                height: 70px;
-                bottom: 10px; /* Adjust for smaller screens */
+                width: 60px;
+                height: 60px;
+                bottom: 10px;
                 right: 10px;
             }
             
@@ -359,18 +407,6 @@
                 align-items: center; /* Center items when stacked */
                 text-align: center;
             }
-
-            .certificate-title {
-                font-size: 2rem; /* Smaller title on mobile */
-            }
-
-            .certificate-subtitle {
-                font-size: 1.5rem; /* Smaller subtitle on mobile */
-            }
-
-            .congratulations-main-text {
-                font-size: 2.5rem; /* Smaller "Tebrikler" on mobile */
-            }
         }
     
         @media (max-width: 640px) {
@@ -379,14 +415,20 @@
             }
             
             .certificate {
-                padding: 15px;
+                padding: 1rem;
             }
             
-            .certificate-border {
+            .certificate-inner-border {
                 top: 10px;
                 left: 10px;
                 right: 10px;
                 bottom: 10px;
+            }
+            .certificate-header {
+                width: calc(100% + 2rem); /* Adjust for mobile padding */
+                margin-left: -1rem;
+                margin-right: -1rem;
+                margin-top: -1rem;
             }
         }
     
@@ -758,17 +800,7 @@
                         Sertifikayı Görüntüle
                     </button>
                 </div>
-                <div class="mt-6 text-center">
-                    <button id="generateNewQuizButton" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 flex items-center justify-center mx-auto">
-                        <span id="generateQuizButtonText">Yeni Quiz Oluştur ✨</span>
-                        <svg id="generateQuizSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                    </button>
-                    <p id="generateQuizErrorMessage" class="text-red-500 text-sm mt-2 hidden"></p>
                 </div>
-            </div>
         </section>
 
         <section id="certificate" class="tab-content">
@@ -788,35 +820,34 @@
                     </ul>
                 </div>
                 
-                <div id="certificateContainer" class="certificate mx-auto max-w-2xl mb-8">
-                    <div class="certificate-border"></div>
+                <div id="certificateContainer" class="certificate mx-auto mb-8">
+                    <div class="certificate-inner-border"></div>
                     
-                    <div class="congratulations-section">
-                        <h2 class="congratulations-main-text">Tebrikler</h2>
+                    <div class="certificate-header">
+                        <h2>Tebrikler</h2>
                     </div>
 
                     <div class="certificate-main-content">
-                        <h3 class="certificate-title font-bold">Prompt Engineering</h3>
-                        <p class="certificate-subtitle font-medium">10 Temel Prensip</p>
-                        <p class="text-gray-600 mt-4">eğitimini başarıyla tamamladığını onaylar.</p>
+                        <h3 class="certificate-title">Prompt Engineering</h3>
+                        <p class="certificate-subtitle">10 Temel Prensip</p>
+                        <p class="certificate-description">eğitimini başarıyla tamamladığını onaylar.</p>
                         
-                        <div class="mb-6">
-                            <input type="text" id="certificateName" placeholder="Adınız" class="certificate-name-input text-2xl font-semibold w-full border-none focus:outline-none bg-transparent py-2">
-                        </div>
+                        <input type="text" id="certificateName" placeholder="Adınız" class="certificate-name-input">
                         
-                        <div class="flex justify-between w-full max-w-xs mx-auto text-sm text-gray-700 mb-4">
+                        <div class="certificate-details">
                             <p>Tarih: <span id="certificateDate"></span></p>
                             <p>Sertifika No: <span id="certificateNumber"></span></p>
                         </div>
+
+                        <p class="certificate-footer-signature">Semanur Ayyıldız</p>
+                        <p class="certificate-footer-role">Görsel İletişim Tasarımı ve Dijital Dönüşüm Uzmanı</p>
+                        <a href="https://www.linkedin.com/in/semayy/" target="_blank" class="certificate-footer-linkedin text-purple-600 hover:underline">linkedin.com/in/semayy</a>
                     </div>
 
-                    <div class="certificate-footer-text">
-                        <p class="mb-1">Bu sayfada yer alan bilgiler, kaynak gösterilen içeriklerden derlenmiştir. Sertifikanın yasal bir geçerliliği yoktur, sadece eğitim amacıyla ve kar gütmeden hazırlanmıştır.</p>
-                        <p class="font-medium text-purple-800">Semanur Ayyıldız</p>
-                        <p class="text-purple-700">Görsel İletişim Tasarımı ve Dijital Dönüşüm Uzmanı</p>
-                        <a href="https://www.linkedin.com/in/semayy/" target="_blank" class="text-purple-600 hover:underline">linkedin.com/in/semayy</a>
-                        <p class="mt-2 text-gray-600">© 2025 Prompt Engineering Temel Seviye Eğitimi. Tüm hakları saklıdır.</p>
-                    </div>
+                    <p class="certificate-legal-text">
+                        Bu sayfada yer alan bilgiler, kaynak gösterilen içeriklerden derlenmiştir. Sertifikanın yasal bir geçerliliği yoktur, sadece eğitim amacıyla ve kar gütmeden hazırlanmıştır.
+                        © 2025 Prompt Engineering Temel Seviye Eğitimi. Tüm hakları saklıdır.
+                    </p>
 
                     <div class="certificate-seal">
                         <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -1778,10 +1809,13 @@
                 tempContainer.style.left = '-9999px';
                 tempContainer.style.top = '-9999px';
                 // Set the exact dimensions for the temporary container to match the certificate
-                tempContainer.style.width = '557px';
-                tempContainer.style.height = '474px';
+                tempContainer.style.width = '700px'; // Set to max-width of certificate
+                tempContainer.style.height = 'auto'; // Auto height for responsiveness
                 tempContainer.style.overflow = 'hidden'; // Hide overflow if content is larger than fixed size
-                tempContainer.style.backgroundColor = '#e0f2f7'; // Match certificate background
+                tempContainer.style.backgroundColor = '#fdfbff'; // Match certificate background
+                tempContainer.style.padding = '2.5rem'; // Match certificate padding
+                tempContainer.style.borderRadius = '15px'; // Match certificate border-radius
+                tempContainer.style.boxSizing = 'border-box'; // Include padding in width/height
 
                 // Clone the certificate container's content and append to tempContainer
                 const certificateContentToClone = certificateSection.cloneNode(true);
@@ -1800,7 +1834,7 @@
                         scale: 2, // Increase scale for better quality (e.g., 2 or 3)
                         useCORS: true, // Important if images/fonts are from different origins
                         logging: false, // Disable logging for cleaner console
-                        backgroundColor: '#e0f2f7' // Ensure consistent background for the capture
+                        backgroundColor: '#fdfbff' // Ensure consistent background for the capture
                     });
 
                     const imageData = canvas.toDataURL('image/png');
@@ -1925,7 +1959,9 @@
                     let chatHistory = [];
                     chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                     const payload = { contents: chatHistory };
-                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    // API Anahtarınız buraya eklendi - Güvenlik uyarısı için yorumu okuyunuz.
+                    // Not: Canvas ortamında bu anahtar otomatik olarak sağlanır, ancak test için manuel olarak eklendi.
+                    const apiKey = "AIzaSyCEEywiObjmjA1ecwseMortdDKnt5Bwjrc"; 
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                     const response = await fetch(apiUrl, {
@@ -2009,7 +2045,9 @@
                     let chatHistory = [];
                     chatHistory.push({ role: "user", parts: [{ text: optimizationPrompt }] });
                     const payload = { contents: chatHistory };
-                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    // API Anahtarınız buraya eklendi - Güvenlik uyarısı için yorumu okuyunuz.
+                    // Not: Canvas ortamında bu anahtar otomatik olarak sağlanır, ancak test için manuel olarak eklendi.
+                    const apiKey = "AIzaSyCEEywiObjmjA1ecwseMortdDKnt5Bwjrc"; 
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                     const response = await fetch(apiUrl, {
@@ -2093,7 +2131,9 @@
                     let chatHistory = [];
                     chatHistory.push({ role: "user", parts: [{ text: summarizePrompt }] });
                     const payload = { contents: chatHistory };
-                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    // API Anahtarınız buraya eklendi - Güvenlik uyarısı için yorumu okuyunuz.
+                    // Not: Canvas ortamında bu anahtar otomatik olarak sağlanır, ancak test için manuel olarak eklendi.
+                    const apiKey = "AIzaSyCEEywiObjmjA1ecwseMortdDKnt5Bwjrc"; 
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                     const response = await fetch(apiUrl, {
@@ -2177,7 +2217,9 @@
                     let chatHistory = [];
                     chatHistory.push({ role: "user", parts: [{ text: developPrompt }] });
                     const payload = { contents: chatHistory };
-                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    // API Anahtarınız buraya eklendi - Güvenlik uyarısı için yorumu okuyunuz.
+                    // Not: Canvas ortamında bu anahtar otomatik olarak sağlanır, ancak test için manuel olarak eklendi.
+                    const apiKey = "AIzaSyCEEywiObjmjA1ecwseMortdDKnt5Bwjrc"; 
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                     const response = await fetch(apiUrl, {
@@ -2261,7 +2303,9 @@
                     let chatHistory = [];
                     chatHistory.push({ role: "user", parts: [{ text: creativePrompt }] });
                     const payload = { contents: chatHistory };
-                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    // API Anahtarınız buraya eklendi - Güvenlik uyarısı için yorumu okuyunuz.
+                    // Not: Canvas ortamında bu anahtar otomatik olarak sağlanır, ancak test için manuel olarak eklendi.
+                    const apiKey = "AIzaSyCEEywiObjmjA1ecwseMortdDKnt5Bwjrc"; 
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                     const response = await fetch(apiUrl, {
@@ -2345,7 +2389,9 @@
                     let chatHistory = [];
                     chatHistory.push({ role: "user", parts: [{ text: analysisPrompt }] });
                     const payload = { contents: chatHistory };
-                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    // API Anahtarınız buraya eklendi - Güvenlik uyarısı için yorumu okuyunuz.
+                    // Not: Canvas ortamında bu anahtar otomatik olarak sağlanır, ancak test için manuel olarak eklendi.
+                    const apiKey = "AIzaSyCEEywiObjmjA1ecwseMortdDKnt5Bwjrc"; 
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                     const response = await fetch(apiUrl, {
@@ -2374,87 +2420,6 @@
                     analyzePromptButton.disabled = false;
                     analyzeButtonText.textContent = 'Analiz Et & Puanla';
                     analyzeSpinner.classList.add('hidden');
-                }
-            });
-
-            // NEW FEATURE: Dynamic Quiz Question Generation
-            const generateNewQuizButton = document.getElementById('generateNewQuizButton');
-            const generateQuizButtonText = document.getElementById('generateQuizButtonText');
-            const generateQuizSpinner = document.getElementById('generateQuizSpinner');
-            const generateQuizErrorMessage = document.getElementById('generateQuizErrorMessage');
-
-            generateNewQuizButton.addEventListener('click', async () => {
-                generateNewQuizButton.disabled = true;
-                generateQuizButtonText.textContent = 'Oluşturuluyor...';
-                generateQuizSpinner.classList.remove('hidden');
-                generateQuizErrorMessage.classList.add('hidden');
-
-                const quizGenerationPrompt = `Prompt mühendisliği prensipleri hakkında 5 adet çoktan seçmeli quiz sorusu oluştur. Her sorunun 4 seçeneği ve doğru seçeneğin indeksi (0'dan başlayarak) olsun. Çıktıyı aşağıdaki JSON formatında ver, başka hiçbir metin veya açıklama ekleme:\n\n[\n  {\n    "question": "Soru metni burada.",\n    "options": ["Seçenek 1", "Seçenek 2", "Seçenek 3", "Seçenek 4"],\n    "correctAnswer": 0\n  }\n]`;
-
-                try {
-                    let chatHistory = [];
-                    chatHistory.push({ role: "user", parts: [{ text: quizGenerationPrompt }] });
-                    const payload = {
-                        contents: chatHistory,
-                        generationConfig: {
-                            responseMimeType: "application/json",
-                            responseSchema: {
-                                type: "ARRAY",
-                                items: {
-                                    type: "OBJECT",
-                                    properties: {
-                                        "question": { "type": "STRING" },
-                                        "options": {
-                                            "type": "ARRAY",
-                                            "items": { "type": "STRING" }
-                                        },
-                                        "correctAnswer": { "type": "NUMBER" }
-                                    },
-                                    "required": ["question", "options", "correctAnswer"]
-                                }
-                            }
-                        }
-                    };
-                    const apiKey = ""; // API Anahtarınız buraya eklendi
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    const result = await response.json();
-
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        const newQuestionsJson = result.candidates[0].content.parts[0].text;
-                        const newQuestions = JSON.parse(newQuestionsJson);
-                        
-                        if (Array.isArray(newQuestions) && newQuestions.every(q => q.question && Array.isArray(q.options) && typeof q.correctAnswer === 'number')) {
-                            quizQuestions = newQuestions; // Update the quizQuestions array
-                            currentQuestionIndex = 0; // Reset quiz
-                            quizScore = 0;
-                            updateQuizContent(currentQuestionIndex);
-                            document.getElementById('quizScore').textContent = `Puan: ${quizScore}/${quizQuestions.length}`;
-                            showCustomMessage('Yeni quiz soruları başarıyla oluşturuldu!');
-                        } else {
-                            generateQuizErrorMessage.textContent = 'Oluşturulan quiz formatı hatalı. Lütfen tekrar deneyin.';
-                            generateQuizErrorMessage.classList.remove('hidden');
-                        }
-                    } else {
-                        generateQuizErrorMessage.textContent = 'Yeni quiz soruları oluşturulamadı. Lütfen tekrar deneyin.';
-                        generateQuizErrorMessage.classList.remove('hidden');
-                    }
-                } catch (error) {
-                    console.error('Error generating new quiz:', error);
-                    generateQuizErrorMessage.textContent = 'Bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
-                    generateQuizErrorMessage.classList.remove('hidden');
-                } finally {
-                    generateNewQuizButton.disabled = false;
-                    generateQuizButtonText.textContent = 'Yeni Quiz Oluştur ✨';
-                    generateQuizSpinner.classList.add('hidden');
                 }
             });
         });
