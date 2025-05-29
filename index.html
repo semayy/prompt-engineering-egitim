@@ -1,0 +1,1623 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="tr"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Prompt Engineering: 10 Temel Prensip&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Poppins font from Google Fonts */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Poppins', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #f8f5fe;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Card flip animation */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.principle-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>perspective: 1000px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 320px; /* Adjusted height for new button */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.8s;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform-style: preserve-3d;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card.flipped {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: rotateY(180deg);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card-front, .card-back {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-backface-visibility: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>backface-visibility: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 20px rgba(106, 13, 173, 0.15);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card-back {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: rotateY(180deg);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow-y: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: space-between; /* Distribute content and button */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Quiz styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.quiz-option {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.quiz-option:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.quiz-option.selected {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #6A0DAD;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F3E5F5;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.quiz-option.correct {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #4CAF50;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #E8F5E9;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.quiz-option.incorrect {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: #F44336;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #FFEBEE;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Animations */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes pulse {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { transform: scale(1); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>50% { transform: scale(1.05); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { transform: scale(1); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pulse {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: pulse 2s infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes fadeIn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>from { opacity: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>to { opacity: 1; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.fade-in {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 0.5s ease-in;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Tab navigation */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-button::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: -2px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #6A0DAD;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: width 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-button.active::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.tab-content.active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: block;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Custom scrollbar */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card-back::-webkit-scrollbar {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card-back::-webkit-scrollbar-track {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #f1f1f1;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card-back::-webkit-scrollbar-thumb {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #6A0DAD;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.card-back::-webkit-scrollbar-thumb:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: #5a0b93;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Progress bar */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.progress-bar {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #e0e0e0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.progress {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #6A0DAD;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: width 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Certificate styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.certificate {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(135deg, #fff 0%, #f9f5ff 100%);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 30px rgba(106, 13, 173, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.certificate-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.certificate-border {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid rgba(106, 13, 173, 0.2);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 6px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.certificate-title {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Playfair Display', serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #6A0DAD;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>letter-spacing: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.certificate-name-input {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Playfair Display', serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-bottom: 2px solid rgba(106, 13, 173, 0.3);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.certificate-name-input:focus {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-color: rgba(106, 13, 173, 0.8);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.certificate-seal {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 40px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 90px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 90px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>opacity: 0.8;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* References styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.reference-item {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-left: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.reference-item::before {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #6A0DAD;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Mobile responsive adjustments */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.principle-card {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 420px; /* Adjusted height for mobile */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.certificate {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding: 30px 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.certificate-seal {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>width: 70px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 70px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>right: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>/* Mobile menu styles */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.mobile-menu-container {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>overflow-x: auto;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>-webkit-overflow-scrolling: touch;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding-bottom: 5px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.mobile-menu {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>width: max-content;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.tab-button {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>white-space: nowrap;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>flex-shrink: 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding-left: 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding-right: 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 640px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.principle-card {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 480px; /* Further adjusted height for smaller mobile */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.certificate {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>padding: 20px 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>.certificate-border {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>top: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>left: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>right: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>bottom: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Reference link styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.reference-link {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #6A0DAD;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.reference-link:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #4A0080;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.reference-link::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: -2px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #6A0DAD;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scaleX(0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform-origin: bottom right;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.reference-link:hover::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scaleX(1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform-origin: bottom left;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* LinkedIn share button */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.linkedin-share-btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #0077B5;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.linkedin-share-btn:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #005e8c;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Save certificate button */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.save-certificate-btn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #4CAF50; /* Green color */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.save-certificate-btn:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #45a049; /* Darker green on hover */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Enhanced footer styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.footer {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(to right, #4a0080, #6A0DAD);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 2.5rem 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.footer::before {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(to right, #8e44ad, #9b59b6, #8e44ad);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.footer-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.footer-link {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #e0b0ff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.footer-link:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.footer-link::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: -2px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #e0b0ff;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scaleX(0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform-origin: bottom right;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.footer-link:hover::after {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: scaleX(1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform-origin: bottom left;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><span class="Apple-converted-space">    </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.footer-divider {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: rgba(255, 255, 255, 0.5);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 0 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>vertical-align: middle;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Solid purple background for certificate image area with "Tebrikler" text */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.congratulations-bg {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #6A0DAD; /* Solid purple */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 200px; /* Adjust height as needed */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 2px 10px rgba(0,0,0,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.congratulations-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Playfair Display', serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 3rem; /* Adjust size as needed */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-shadow: 2px 2px 4px rgba(0,0,0,0.5);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 2;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* Modal Styles */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none; /* Hidden by default */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed; /* Stay in place */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000; /* Sit on top */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%; /* Full width */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%; /* Full height */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow: auto; /* Enable scroll if needed */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: rgba(0,0,0,0.4); /* Black w/ opacity */</p>
+<p class="p1"><span class="Apple-converted-space">            </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #fefefe;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 5px 15px rgba(0,0,0,0.3);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: fadeIn 0.3s ease-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.close-button {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #aaa;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>float: right;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 28px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>.close-button:hover,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.close-button:focus {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: black;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>text-decoration: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!--</p>
+<p class="p1"><span class="Apple-converted-space">        </span>*** ÖNEMLİ: SERTİFİKA GÖRSELİNİN LİNKEDİN'DE GÖRÜNMESİ İÇİN ***</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>Bu HTML sayfasını bir sunucuda barındırıyorsanız,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>LinkedIn'in paylaşım önizlemesinde sertifika görselinizin görünmesini sağlamak için,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>bu sayfanın `&lt;head&gt;` bölümüne aşağıdaki Open Graph meta etiketini eklemeniz GEREKİR.</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>'https://example.com/sertifika-gorseliniz.jpg' kısmını,</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sertifika görselinizin doğrudan erişilebilir URL'si ile DEĞİŞTİRMELİSİNİZ.</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Bu görsel, LinkedIn'in paylaşım penceresinde otomatik olarak önizlenecektir.</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;meta property="og:image" content="https://example.com/sertifika-gorseliniz.jpg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;meta property="og:title" content="Prompt Engineering Sertifikası"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;meta property="og:description" content="Prompt Engineering: 10 Temel Prensip eğitimini başarıyla tamamladım!"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>--&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="flex flex-col min-h-screen"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="bg-purple-800 text-white py-6 shadow-md text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-3xl md:text-4xl font-bold mb-1"&gt;Prompt Engineering&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-xl md:text-2xl font-medium"&gt;10 Temel Prensip&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav class="bg-white shadow-md py-4 sticky top-0 z-10"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mobile-menu-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mobile-menu flex justify-center space-x-4 md:space-x-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="tab-button active px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="intro"&gt;Giriş&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="principles"&gt;Prensipler&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="quiz"&gt;Quiz&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="references"&gt;Kaynakça&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="certificate"&gt;Sertifika&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;main class="container mx-auto px-4 py-8 flex-grow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="intro" class="tab-content active fade-in"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-lg shadow-lg p-6 mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-purple-900 mb-4"&gt;Prompt Engineering Nedir?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mb-4"&gt;Prompt mühendisliği, yapay zeka sistemlerinden en iyi sonuçları almak için girdileri (promptları) tasarlama ve optimize etme sanatıdır. Doğru prompt, AI'dan daha doğru, daha alakalı ve daha yararlı yanıtlar almanızı sağlar.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mb-4"&gt;Bu interaktif rehber, etkili promptlar oluşturmanıza yardımcı olacak 10 temel prensibi öğretecek ve bu becerileri pekiştirmeniz için alıştırmalar sunacaktır.&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="startButton" class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full sm:w-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Prensipleri Keşfet&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="openPromptOptimizerModal" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full sm:w-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span&gt;Prompt'unu Optimize Et ✨&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 24 24" fill="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid md:grid-cols-2 gap-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white rounded-lg shadow-lg p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="bg-purple-100 p-3 rounded-full mr-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-semibold text-purple-900"&gt;Neden Önemli?&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;İyi tasarlanmış promptlar, AI'dan daha doğru, daha alakalı ve daha yararlı yanıtlar almanızı sağlar. Prompt mühendisliği, AI araçlarının potansiyelini en üst düzeye çıkarmanın anahtarıdır.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="bg-white rounded-lg shadow-lg p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="bg-purple-100 p-3 rounded-full mr-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-semibold text-purple-900"&gt;Bu Rehberde Ne Öğreneceksiniz?&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ul class="list-disc list-inside space-y-2 text-gray-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Açık ve net promptlar oluşturma&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Bağlam ve örneklerle AI'yı yönlendirme&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Çıktı formatını kontrol etme&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Karmaşık görevleri basit adımlara bölme&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;Promptları test etme ve iyileştirme&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="principles" class="tab-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-purple-900 mb-4"&gt;10 Temel Prompt Engineering Prensibi&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-gray-700 mb-4"&gt;Her bir kartı tıklayarak detaylı bilgilere ulaşabilir ve ✨ kendi örneğinizi oluşturabilirsiniz.&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="progress-bar mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="principlesProgress" class="progress" style="width: 0%"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex justify-between text-sm text-gray-600 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span id="viewedCounter"&gt;0/10 Görüntülendi&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="markAllViewed" class="text-purple-700 hover:text-purple-900 font-medium"&gt;Tümünü Görüntülendi İşaretle&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="principlesGrid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="quiz" class="tab-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-lg shadow-lg p-6 mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-purple-900 mb-4"&gt;Prompt Engineering Bilgi Testi&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mb-6"&gt;Öğrendiklerinizi test edin! Aşağıdaki soruları cevaplayarak prompt mühendisliği konusundaki bilginizi ölçün.&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="progress-bar mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div id="quizProgress" class="progress" style="width: 0%"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex justify-between text-sm text-gray-600 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span id="quizScore"&gt;Puan: 0/5&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span id="quizCounter"&gt;Soru 1/5&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="quizContainer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mt-6 flex justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="prevQuestion" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-1" viewBox="0 0 20 20" fill="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Önceki</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="checkAnswer" class="bg-purple-700 hover:bg-purple-800 text-white font-medium py-2 px-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Cevabı Kontrol Et</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="nextQuestion" class="bg-purple-700 hover:bg-purple-800 text-white font-medium py-2 px-4 rounded-lg hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Sonraki</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline ml-1" viewBox="0 0 20 20" fill="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="references" class="tab-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-lg shadow-lg p-6 mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-purple-900 mb-6"&gt;Kaynakça&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mb-6"&gt;Bu sitede kullanılan bilgiler aşağıdaki güvenilir ve açık kaynaklardan derlenmiştir:&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="reference-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-semibold text-purple-900 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" class="reference-link flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>OpenAI Documentation</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-700"&gt;OpenAI'ın resmi dokümantasyonu, prompt mühendisliği ve en iyi uygulamalar hakkında kapsamlı bilgiler içerir.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="reference-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-semibold text-purple-900 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="https://www.promptingguide.ai/" target="_blank" class="reference-link flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>Prompt Engineering Guide (dair.ai)</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-700"&gt;Dair.ai tarafından hazırlanan bu kapsamlı rehber, prompt mühendisliği tekniklerini ve stratejilerini detaylı olarak ele alır.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="reference-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-semibold text-purple-900 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="https://www.anthropic.com/index/prompting-guide" target="_blank" class="reference-link flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>Anthropic Prompting Principles</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-700"&gt;Anthropic'in AI sistemleriyle etkili iletişim için geliştirdiği prensipleri ve önerileri içerir.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="reference-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-semibold text-purple-900 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="https://ai.google.dev/docs/prompt_best_practices" target="_blank" class="reference-link flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>Google Prompt Design Playbook</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-700"&gt;Google'ın AI sistemleri için prompt tasarımı konusunda sunduğu en iyi uygulamalar ve stratejiler.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="reference-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-semibold text-purple-900 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;a href="https://learn.microsoft.com/en-us/microsoft-copilot/prompts" target="_blank" class="reference-link flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>Microsoft Copilot Prompt Patterns</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-700"&gt;Microsoft'un Copilot için geliştirdiği prompt kalıpları ve etkili kullanım stratejileri.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="certificate" class="tab-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-lg shadow-lg p-6 mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-purple-900 mb-4"&gt;Başarı Sertifikası&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="certificateRequirements" class="mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="mb-4"&gt;Sertifikanızı almak için aşağıdaki işlemleri tamamlamanız gerekmektedir:&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ul class="list-disc list-inside space-y-2 text-gray-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li id="req-principles" class="text-red-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="font-medium"&gt;Tüm prensipleri inceleme&lt;/span&gt;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="ml-2"&gt;(0/10 tamamlandı)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li id="req-quiz" class="text-red-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="font-medium"&gt;Quiz'i tamamlama&lt;/span&gt;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span class="ml-2"&gt;(0/5 tamamlandı)&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="certificateContainer" class="certificate mx-auto max-w-2xl mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="certificate-border"&gt;&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="certificate-content text-center relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="certificate-title text-3xl font-bold mb-2"&gt;Başarı Sertifikası&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600 mb-8"&gt;Bu belge&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;input type="text" id="certificateName" placeholder="Adınızı girin" class="certificate-name-input text-center text-2xl font-semibold w-full border-none focus:outline-none bg-transparent py-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mb-4 text-gray-700"&gt;adlı kişinin&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="text-xl font-bold text-purple-900 mb-6"&gt;Prompt Engineering: 10 Temel Prensip&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="mb-8 text-gray-700"&gt;eğitimini başarıyla tamamladığını onaylar.&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="mb-8 p-4 bg-purple-700 rounded-lg border border-purple-800 relative overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="congratulations-bg w-full h-40 flex items-center justify-center text-white text-5xl font-bold rounded-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span class="congratulations-text"&gt;Tebrikler&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="mb-8 text-lg font-semibold text-gray-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;Sertifika No: &lt;span id="certificateNumber"&gt;&lt;/span&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p&gt;Tarih: &lt;span id="certificateDate"&gt;&lt;/span&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="certificate-seal"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;circle cx="50" cy="50" r="48" fill="none" stroke="#6A0DAD" stroke-width="2"&gt;&lt;/circle&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;circle cx="50" cy="50" r="40" fill="none" stroke="#6A0DAD" stroke-width="1"&gt;&lt;/circle&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center flex flex-col sm:flex-row justify-center items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="shareLinkedIn" class="linkedin-share-btn hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>LinkedIn'de Paylaş</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="saveCertificateButton" class="save-certificate-btn hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M13 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V11M13 3V9H21M13 3L21 11M17 17H7V15H17V17Z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Sertifikayı Kaydet</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="container mx-auto px-4 footer-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="max-w-4xl mx-auto text-center mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mb-6 text-lg"&gt;Bu sayfada yer alan bilgiler, kaynak gösterilen içeriklerden derlenmiştir. Sertifikanın yasal bir geçerliliği yoktur, sadece eğitim amacıyla ve kar gütmeden hazırlanmıştır.&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="inline-flex flex-wrap justify-center items-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="font-medium"&gt;Semanur Ayyıldız&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="footer-divider"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span&gt;Görsel İletişim Tasarımı ve Dijital Dönüşüm Uzmanı&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;a href="https://www.linkedin.com/in/semayy/" target="_blank" class="footer-link inline-flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>linkedin.com/in/semayy</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="border-t border-purple-400 border-opacity-30 pt-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-center text-sm opacity-80"&gt;© 2025 Prompt Engineering Temel Seviye Eğitimi. Tüm hakları saklıdır.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="generateExampleModal" class="modal"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="close-button" id="closeModalButton"&gt;&amp;times;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 class="text-xl font-bold text-purple-900 mb-4"&gt;✨ Kendi Örneğini Oluştur&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="mb-4"&gt;Hangi konuda örnek prompt oluşturmak istersiniz?&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;input type="text" id="exampleTopicInput" placeholder="Örn: Yemek tarifi, Pazarlama stratejisi..."</p>
+<p class="p1"><span class="Apple-converted-space">                   </span>class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="generateExampleButton"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span id="generateButtonText"&gt;Oluştur&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;svg id="generateSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"&gt;&lt;/circle&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"&gt;&lt;/path&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="generatedExampleOutput" class="mt-4 p-4 bg-gray-100 rounded-lg border border-gray-200 hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="font-medium text-purple-700 mb-2"&gt;Oluşturulan Örnek:&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p id="generatedExampleText" class="text-gray-800 whitespace-pre-wrap"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p id="generateErrorMessage" class="text-red-500 text-sm mt-2 hidden"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="promptOptimizerModal" class="modal"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="close-button" id="closeOptimizerModalButton"&gt;&amp;times;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h3 class="text-xl font-bold text-blue-800 mb-4"&gt;Prompt'unu Optimize Et ✨&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="mb-4"&gt;Yazdığınız prompt'u girin, yapay zeka size iyileştirme önerileri sunsun.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;textarea id="promptToOptimizeInput"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>placeholder="Örn: Bana bir hikaye yaz."<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>rows="6"&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button id="optimizePromptButton"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;span id="optimizeButtonText"&gt;Optimize Et&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;svg id="optimizeSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"&gt;&lt;/circle&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"&gt;&lt;/path&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="optimizedPromptOutput" class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200 hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="font-medium text-blue-700 mb-2"&gt;Optimizasyon Önerileri:&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p id="optimizedPromptText" class="text-gray-800 whitespace-pre-wrap"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p id="optimizeErrorMessage" class="text-red-500 text-sm mt-2 hidden"&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('DOMContentLoaded', function() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Progress tracking</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let progress = {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>principles: new Set(),</p>
+<p class="p1"><span class="Apple-converted-space">                </span>quizCompleted: 0</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Tab Navigation</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tabButtons = document.querySelectorAll('.tab-button');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tabContents = document.querySelectorAll('.tab-content');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>tabButtons.forEach(button =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const tabId = button.getAttribute('data-tab');</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tabButtons.forEach(btn =&gt; btn.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>tabContents.forEach(content =&gt; content.classList.remove('active'));</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>button.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById(tabId).classList.add('active');</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Check certificate eligibility when visiting certificate tab</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (tabId === 'certificate') {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>checkCertificateEligibility();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Scroll the active tab into view in mobile menu</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (window.innerWidth &lt;= 768) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Start button redirects to principles tab</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('startButton').addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tabButtons.forEach(btn =&gt; btn.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tabContents.forEach(content =&gt; content.classList.remove('active'));</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.querySelector('[data-tab="principles"]').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('principles').classList.add('active');</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Scroll the principles tab into view in mobile menu</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (window.innerWidth &lt;= 768) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.querySelector('[data-tab="principles"]').scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Principles Cards</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const principles = [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>number: 1,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: "Açıklık ve Netlik",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: "Promptlarınız açık, net ve spesifik olmalıdır. Belirsizlikten kaçının ve tam olarak ne istediğinizi belirtin.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>goodExample: "2023 yılında Türkiye'de yaşanan en önemli 3 ekonomik gelişmeyi, her biri için tarihler ve temel istatistikler ile birlikte açıklayın.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badExample: "Türkiye ekonomisi hakkında bilgi ver."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>number: 2,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: "Bağlam Sağlama",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: "AI'ya yeterli bağlam sağlayın. Arka plan bilgisi, amaç ve hedef kitle gibi detaylar daha alakalı yanıtlar almanızı sağlar.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>goodExample: "Lise öğrencilerine yönelik, küresel ısınmanın temel nedenleri ve sonuçlarını açıklayan 5 dakikalık bir sunum metni hazırla.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badExample: "Küresel ısınma hakkında bir metin yaz."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>number: 3,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: "Örnekler Verme",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: "İstediğiniz çıktı formatını veya stilini göstermek için örnekler verin. Bu, AI'nın beklentilerinizi daha iyi anlamasını sağlar.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>goodExample: "Aşağıdaki formatta 3 farklı kahve tarifi ver: \n\nTarif Adı: [İsim]\nZorluk: [Kolay/Orta/Zor]\nMalzemeler: [Liste]\nHazırlanışı: [Adımlar]",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badExample: "Bana kahve tarifleri ver."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>number: 4,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: "Rol Atama",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: "AI'ya belirli bir rol verin. Bu, yanıtların belirli bir uzmanlık veya bakış açısıyla şekillenmesini sağlar.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>goodExample: "Bir pazarlama uzmanı olarak, küçük bir kafe için sosyal medya stratejisi önerileri sun.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badExample: "Kafe için sosyal medya fikirleri ver."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>number: 5,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: "Çıktı Formatını Belirtme",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: "İstediğiniz yanıt formatını açıkça belirtin. Bu, bilgilerin istediğiniz şekilde düzenlenmesini sağlar.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>goodExample: "Sağlıklı beslenme hakkında 5 ipucu ver. Her ipucu için bir başlık ve 2-3 cümlelik açıklama kullan. Sonunda tüm ipuçlarını özetleyen bir paragraf ekle.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badExample: "Sağlıklı beslenme ipuçları ver."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>number: 6,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: "Adım Adım Talimatlar",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: "Karmaşık görevleri basit adımlara bölün. Bu, AI'nın her adımı sırayla takip etmesini ve daha doğru sonuçlar üretmesini sağlar.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>goodExample: "Bir iş planı özeti hazırla: 1) Önce ürünü kısaca tanımla, 2) Hedef pazarı belirle, 3) Temel rekabet avantajlarını listele, 4) İlk yıl için gelir tahminini hesapla.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badExample: "Bana bir iş planı hazırla."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>number: 7,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: "Kısıtlamalar Belirtme",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: "Yanıtın uzunluğu, tonu, kullanılacak veya kaçınılacak belirli kelimeler gibi kısıtlamaları belirtin.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>goodExample: "300 kelimeyi geçmeyecek şekilde, teknik jargon kullanmadan ve pozitif bir tonda, yeni başlayanlar için yoga faydalarını anlat.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badExample: "Yoga faydalarını anlat."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>number: 8,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: "Çoklu Perspektif İsteme",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: "Farklı bakış açıları veya yaklaşımlar isteyin. Bu, daha kapsamlı ve dengeli yanıtlar almanızı sağlar.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>goodExample: "Uzaktan çalışmanın avantajları ve dezavantajlarını hem işveren hem de çalışan perspektifinden analiz et.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badExample: "Uzaktan çalışma hakkında ne düşünüyorsun?"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>number: 9,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: "İteratif İyileştirme",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: "İlk yanıtı alın ve sonra spesifik iyileştirmeler isteyin. Bu iteratif süreç, yanıtı adım adım mükemmelleştirmenizi sağlar.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>goodExample: "Bu metni daha ikna edici yap. Özellikle giriş paragrafını güçlendir ve sonuca bir çağrı eylemi ekle.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badExample: "Bu metni daha iyi yap."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>number: 10,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>title: "Geri Bildirim Verme",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>description: "AI'ya yanıtları hakkında geri bildirim verin. Bu, gelecekteki yanıtların daha iyi hizalanmasını sağlar.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>goodExample: "Bu yanıt çok teknik oldu. Lütfen aynı bilgiyi 10 yaşındaki bir çocuğun anlayabileceği şekilde yeniden açıkla.",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>badExample: "Bunu anlamadım, tekrar dene."</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>];</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Create all principle cards at once</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function createPrincipleCards() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const principlesGrid = document.getElementById('principlesGrid');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>principlesGrid.innerHTML = '';</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>principles.forEach((principle, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const cardElement = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cardElement.className = 'principle-card';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cardElement.dataset.index = index;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>cardElement.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="card-front bg-white p-6 flex flex-col justify-center items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span class="text-2xl font-bold text-purple-700"&gt;${principle.number}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;h3 class="text-xl font-bold text-purple-900 mb-2"&gt;${principle.title}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-center text-gray-600"&gt;Detaylar için kartı tıklayın&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="card-back bg-white p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h3 class="text-xl font-bold text-purple-900 mb-4"&gt;${principle.number}. ${principle.title}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p class="mb-4"&gt;${principle.description}&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="font-medium text-green-700"&gt;İyi Örnek:&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-gray-700 whitespace-pre-wrap"&gt;"${principle.goodExample}"&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="font-medium text-red-700"&gt;Kötü Örnek:&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;p class="text-gray-700 whitespace-pre-wrap"&gt;"${principle.badExample}"&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="mt-auto pt-4 border-t border-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button class="generate-custom-example-btn bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 w-full flex items-center justify-center"</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>data-principle-title="${principle.title}" data-principle-description="${principle.description}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>✨ Kendi Örneğini Oluştur</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>`;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>principlesGrid.appendChild(cardElement);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Initialize card flip for all cards</p>
+<p class="p1"><span class="Apple-converted-space">                </span>initializeCardFlip();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Initialize card flip functionality for all cards</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function initializeCardFlip() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const cards = document.querySelectorAll('.principle-card .card');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>cards.forEach(card =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>card.addEventListener('click', function(event) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Prevent flipping if the generate button is clicked</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (event.target.closest('.generate-custom-example-btn')) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>this.classList.toggle('flipped');</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Mark card as viewed when flipped</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const cardIndex = parseInt(this.parentElement.dataset.index);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (!progress.principles.has(cardIndex)) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>progress.principles.add(cardIndex);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>updatePrinciplesProgress();</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Update principles progress</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function updatePrinciplesProgress() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const progressPercentage = (progress.principles.size / principles.length) * 100;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('principlesProgress').style.width = `${progressPercentage}%`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('viewedCounter').textContent = `${progress.principles.size}/${principles.length} Görüntülendi`;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Update certificate requirements</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updateCertificateRequirements();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Mark all principles as viewed</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('markAllViewed').addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>for (let i = 0; i &lt; principles.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>progress.principles.add(i);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>updatePrinciplesProgress();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Create all principle cards on page load</p>
+<p class="p1"><span class="Apple-converted-space">            </span>createPrincipleCards();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Quiz functionality</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const quizQuestions = [</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>question: "Aşağıdakilerden hangisi etkili bir prompt'un özelliği değildir?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Açık ve net olması",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Mümkün olduğunca kısa ve öz olması",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Belirsiz ve genel ifadeler içermesi",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Spesifik talimatlar içermesi"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>correctAnswer: 2</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>question: "Prompt mühendisliğinde 'rol atama' ne anlama gelir?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"AI'ya belirli bir karakter veya uzmanlık rolü vermek",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Kullanıcının kendi rolünü tanımlaması",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Prompt'un hangi kategoriye ait olduğunu belirtmek",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"AI'nın yanıtını belirli bir kişiye yönlendirmek"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>correctAnswer: 0</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>question: "Aşağıdakilerden hangisi iyi bir prompt örneğidir?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Bana bir makale yaz.",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Sağlık hakkında bilgi ver.",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Bir şeyler anlat.",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Bir pazarlama uzmanı olarak, e-ticaret sitesi için 5 SEO stratejisi öner ve her birini 2-3 cümleyle açıkla."</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>correctAnswer: 3</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>question: "Prompt'larda bağlam sağlamanın amacı nedir?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Sadece yanıtı uzatmak",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"AI'nın daha alakalı ve hedefli yanıtlar vermesini sağlamak",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Teknik terimler kullanmaktan kaçınmak",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Prompt'u daha kısa tutmak"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>correctAnswer: 1</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>question: "İteratif iyileştirme prensibi neyi ifade eder?",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>options: [</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Aynı prompt'u tekrar tekrar göndermek",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"Her seferinde tamamen farklı promptlar kullanmak",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"İlk yanıtı alıp sonra spesifik iyileştirmeler istemek",</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>"AI'nın kendi kendine yanıtlarını düzeltmesini beklemek"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>correctAnswer: 2</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>];</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let currentQuestionIndex = 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let quizScore = 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let questionAnswered = false;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>function updateQuizContent(index) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const question = quizQuestions[index];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const quizContainer = document.getElementById('quizContainer');</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>quizContainer.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="quiz-question"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-lg font-semibold text-purple-900 mb-3"&gt;${index + 1}. ${question.question}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>${question.options.map((option, i) =&gt; `</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="quiz-option border border-gray-300 rounded-lg p-4 hover:border-purple-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;label class="flex items-center cursor-pointer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;input type="radio" name="q${index + 1}" value="${i}" class="hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span class="w-5 h-5 inline-block border border-gray-400 rounded-full mr-3 flex-shrink-0"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span&gt;${option}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>`).join('')}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Add event listeners to quiz options</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.querySelectorAll('.quiz-option').forEach(option =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>option.addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (!questionAnswered) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>document.querySelectorAll('.quiz-option').forEach(opt =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>opt.classList.remove('selected');</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>opt.querySelector('input').checked = false;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">                            </span></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>this.classList.add('selected');</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>this.querySelector('input').checked = true;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Update counter and progress</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('quizCounter').textContent = `Soru ${index + 1}/${quizQuestions.length}`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const progressPercentage = ((index) / quizQuestions.length) * 100;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('quizProgress').style.width = `${progressPercentage}%`;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Update button states</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('prevQuestion').disabled = index === 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('checkAnswer').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('nextQuestion').style.display = 'none';</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Reset question state</p>
+<p class="p1"><span class="Apple-converted-space">                </span>questionAnswered = false;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Initialize first question</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateQuizContent(currentQuestionIndex);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Check answer button</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('checkAnswer').addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const selectedOption = document.querySelector('.quiz-option.selected');</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!selectedOption &amp;&amp; !questionAnswered) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Use a custom message box instead of alert</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showCustomMessage('Lütfen bir cevap seçin!');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!questionAnswered) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>questionAnswered = true;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const selectedIndex = parseInt(selectedOption.querySelector('input').value);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const correctIndex = quizQuestions[currentQuestionIndex].correctAnswer;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (selectedIndex === correctIndex) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>selectedOption.classList.add('correct');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>quizScore++;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>selectedOption.classList.add('incorrect');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.querySelectorAll('.quiz-option')[correctIndex].classList.add('correct');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Update score</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('quizScore').textContent = `Puan: ${quizScore}/${quizQuestions.length}`;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Show next button</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>this.style.display = 'none';</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (currentQuestionIndex &lt; quizQuestions.length - 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('nextQuestion').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// If last question, show a completion message or redirect</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('nextQuestion').textContent = 'Kaynakçaya Geç';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>document.getElementById('nextQuestion').style.display = 'block';</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Update progress for certificate</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>progress.quizCompleted = quizScore;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>updateCertificateRequirements();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Next question button</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('nextQuestion').addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (currentQuestionIndex &lt; quizQuestions.length - 1) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentQuestionIndex++;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>updateQuizContent(currentQuestionIndex);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Go to references tab when finished with all questions</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.querySelector('[data-tab="references"]').click();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Previous question button</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('prevQuestion').addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (currentQuestionIndex &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentQuestionIndex--;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>updateQuizContent(currentQuestionIndex);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Update certificate requirements</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function updateCertificateRequirements() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const principlesReq = document.getElementById('req-principles');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const quizReq = document.getElementById('req-quiz');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const saveButton = document.getElementById('saveCertificateButton'); // Get the save button</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Update principles requirement</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (progress.principles.size === principles.length) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>principlesReq.classList.remove('text-red-600');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>principlesReq.classList.add('text-green-600');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>principlesReq.querySelector('span:last-child').textContent = `(${progress.principles.size}/${principles.length} tamamlandı)`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>principlesReq.classList.remove('text-green-600');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>principlesReq.classList.add('text-red-600');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>principlesReq.querySelector('span:last-child').textContent = `(${progress.principles.size}/${principles.length} tamamlandı)`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Update quiz requirement</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (progress.quizCompleted &gt;= 3) { // Pass with at least 3 correct answers</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>quizReq.classList.remove('text-red-600');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>quizReq.classList.add('text-green-600');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>quizReq.querySelector('span:last-child').textContent = `(${progress.quizCompleted}/${quizQuestions.length} tamamlandı)`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>quizReq.classList.remove('text-green-600');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>quizReq.classList.add('text-red-600');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>quizReq.querySelector('span:last-child').textContent = `(${progress.quizCompleted}/${quizQuestions.length} tamamlandı)`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Check if all requirements are met</p>
+<p class="p1"><span class="Apple-converted-space">                </span>checkCertificateEligibility();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Certificate Number and Date Generation</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function generateCertificateDetails() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Generate a random 6-digit number</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const certNumber = Math.floor(100000 + Math.random() * 900000);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('certificateNumber').textContent = certNumber;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Get current date and format it</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const today = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const options = { year: 'numeric', month: 'long', day: 'numeric' };</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('certificateDate').textContent = today.toLocaleDateString('tr-TR', options);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Call on page load to generate initial details</p>
+<p class="p1"><span class="Apple-converted-space">            </span>generateCertificateDetails();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Check if user is eligible for certificate</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function checkCertificateEligibility() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const shareButton = document.getElementById('shareLinkedIn');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const saveButton = document.getElementById('saveCertificateButton'); // Get the save button</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const allRequirementsMet =<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>progress.principles.size === principles.length &amp;&amp;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>progress.quizCompleted &gt;= 3;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (allRequirementsMet) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>shareButton.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>saveButton.disabled = false; // Enable save button</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.getElementById('certificateRequirements').innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="font-medium text-green-700"&gt;Tebrikler! Tüm gereksinimleri tamamladınız.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-gray-700"&gt;Adınızı girin ve sertifikanızı LinkedIn'de paylaşabilir veya kaydedebilirsiniz.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>shareButton.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>saveButton.disabled = true; // Disable save button</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// LinkedIn share button</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('shareLinkedIn').addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const name = document.getElementById('certificateName').value.trim();</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!name) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showCustomMessage('Lütfen sertifika için adınızı girin!');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Create LinkedIn share URL</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const shareText = encodeURIComponent(`${name} olarak Prompt Engineering: 10 Temel Prensip eğitimini tamamladım! #PromptEngineering #YapayAITr #AI`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}&amp;title=${shareText}`;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Open LinkedIn share dialog in a new window</p>
+<p class="p1"><span class="Apple-converted-space">                </span>window.open(shareUrl, '_blank', 'width=600,height=600');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Save Certificate Button</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('saveCertificateButton').addEventListener('click', async function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const name = document.getElementById('certificateName').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!name) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showCustomMessage('Lütfen sertifika için adınızı girin!');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Temporarily hide elements that should not be part of the screenshot</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const shareButton = document.getElementById('shareLinkedIn');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const saveButton = document.getElementById('saveCertificateButton');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const certificateRequirements = document.getElementById('certificateRequirements');</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>shareButton.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>saveButton.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>certificateRequirements.style.display = 'none';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const certificateSection = document.getElementById('certificateContainer'); // Capture only the certificate content</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const footerElement = document.querySelector('.footer');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Create a temporary container to render both certificate and footer</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const tempContainer = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.style.position = 'absolute'; // Position off-screen</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.style.left = '-9999px';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.style.top = '-9999px';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.style.width = certificateSection.offsetWidth + 'px'; // Match width of certificate section</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.style.backgroundColor = '#f8f5fe'; // Match body background</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.style.padding = '20px'; // Add some padding around the content</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.style.display = 'flex'; // Use flexbox for vertical alignment</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.style.flexDirection = 'column';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.style.alignItems = 'center'; // Center horizontally</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Clone the certificate container's content</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const certificateContentToClone = document.getElementById('certificateContainer').cloneNode(true);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.appendChild(certificateContentToClone);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Add a visual separator if desired, or just space</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const separator = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>separator.style.height = '40px'; // Space between certificate and footer</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.appendChild(separator);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Clone the footer content</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const clonedFooterContent = footerElement.cloneNode(true);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>clonedFooterContent.style.position = 'static'; // Ensure it flows normally</p>
+<p class="p1"><span class="Apple-converted-space">                </span>clonedFooterContent.style.width = '100%'; // Ensure it takes full width</p>
+<p class="p1"><span class="Apple-converted-space">                </span>clonedFooterContent.style.boxShadow = 'none'; // Remove shadow if it causes issues</p>
+<p class="p1"><span class="Apple-converted-space">                </span>clonedFooterContent.style.borderRadius = '0'; // Remove border-radius if it causes issues</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tempContainer.appendChild(clonedFooterContent);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.body.appendChild(tempContainer);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const canvas = await html2canvas(tempContainer, {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>scale: 2, // Increase scale for better quality (e.g., 2 or 3)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>useCORS: true, // Important if images/fonts are from different origins</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>logging: false, // Disable logging for cleaner console</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>backgroundColor: '#f8f5fe' // Ensure consistent background</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const imageData = canvas.toDataURL('image/png');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const link = document.createElement('a');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.href = imageData;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.download = `Prompt_Engineering_Sertifikasi_${name.replace(/\s+/g, '_')}.png`; // Dynamic filename</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.body.appendChild(link);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>link.click();</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.body.removeChild(link);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showCustomMessage('Sertifikanız başarıyla kaydedildi!');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.error('Sertifika kaydedilirken hata oluştu:', error);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>showCustomMessage('Sertifika kaydedilirken bir hata oluştu.');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>document.body.removeChild(tempContainer); // Always remove temporary container</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>// Restore original display styles</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>shareButton.style.display = '';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>saveButton.style.display = '';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>certificateRequirements.style.display = '';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Make sure the active tab is visible in the mobile menu on page load</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (window.innerWidth &lt;= 768) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const activeTab = document.querySelector('.tab-button.active');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (activeTab) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>activeTab.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Handle window resize for mobile menu</p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.addEventListener('resize', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (window.innerWidth &lt;= 768) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const activeTab = document.querySelector('.tab-button.active');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (activeTab) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>activeTab.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Custom Message Box (instead of alert/confirm)</p>
+<p class="p1"><span class="Apple-converted-space">            </span>function showCustomMessage(message) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const messageBox = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>messageBox.style.cssText = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>top: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>left: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>transform: translate(-50%, -50%);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>background-color: white;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>border-radius: 10px;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>box-shadow: 0 5px 15px rgba(0,0,0,0.3);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>z-index: 2000;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>text-align: center;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>font-family: 'Poppins', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>max-width: 300px;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>messageBox.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-lg font-semibold text-gray-800 mb-4"&gt;${message}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg" onclick="this.parentElement.remove()"&gt;Tamam&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.body.appendChild(messageBox);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Gemini API Integration - Custom Example Generation</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const generateExampleModal = document.getElementById('generateExampleModal');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const closeModalButton = document.getElementById('closeModalButton');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const exampleTopicInput = document.getElementById('exampleTopicInput');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const generateExampleButton = document.getElementById('generateExampleButton');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const generatedExampleOutput = document.getElementById('generatedExampleOutput');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const generatedExampleText = document.getElementById('generatedExampleText');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const generateButtonText = document.getElementById('generateButtonText');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const generateSpinner = document.getElementById('generateSpinner');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const generateErrorMessage = document.getElementById('generateErrorMessage');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let currentPrincipleTitle = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let currentPrincipleDescription = '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.querySelectorAll('.generate-custom-example-btn').forEach(button =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>button.addEventListener('click', function() {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentPrincipleTitle = this.dataset.principleTitle;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentPrincipleDescription = this.dataset.principleDescription;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>exampleTopicInput.value = ''; // Clear previous input</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generatedExampleOutput.classList.add('hidden'); // Hide previous output</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateErrorMessage.classList.add('hidden'); // Hide previous error</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateExampleButton.disabled = false; // Enable button</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateButtonText.textContent = 'Oluştur';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateSpinner.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateExampleModal.style.display = 'flex'; // Show modal</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>closeModalButton.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>generateExampleModal.style.display = 'none'; // Hide modal</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.addEventListener('click', (event) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (event.target == generateExampleModal) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateExampleModal.style.display = 'none'; // Hide modal when clicking outside</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>generateExampleButton.addEventListener('click', async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const topic = exampleTopicInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!topic) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateErrorMessage.textContent = 'Lütfen bir konu girin.';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateErrorMessage.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>generateExampleButton.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>generateButtonText.textContent = 'Oluşturuluyor...';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>generateSpinner.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>generatedExampleOutput.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>generateErrorMessage.classList.add('hidden');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const prompt = `Bir prompt mühendisliği prensibi olan '${currentPrincipleTitle}' prensibini kullanarak, '${topic}' hakkında iyi bir prompt örneği oluştur. Sadece prompt örneğini ver, başka açıklama yapma.`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let chatHistory = [];</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>chatHistory.push({ role: "user", parts: [{ text: prompt }] });</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const payload = { contents: chatHistory };</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const response = await fetch(apiUrl, {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>method: 'POST',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>headers: { 'Content-Type': 'application/json' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>body: JSON.stringify(payload)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const result = await response.json();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (result.candidates &amp;&amp; result.candidates.length &gt; 0 &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>result.candidates[0].content &amp;&amp; result.candidates[0].content.parts &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>result.candidates[0].content.parts.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const text = result.candidates[0].content.parts[0].text;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>generatedExampleText.textContent = text;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>generatedExampleOutput.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>generateErrorMessage.textContent = 'Örnek oluşturulamadı. Lütfen tekrar deneyin.';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>generateErrorMessage.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.error('Error generating example:', error);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateErrorMessage.textContent = 'Bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateErrorMessage.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateExampleButton.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateButtonText.textContent = 'Oluştur';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>generateSpinner.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Prompt Optimizer Modal Logic</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const promptOptimizerModal = document.getElementById('promptOptimizerModal');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const openPromptOptimizerModalButton = document.getElementById('openPromptOptimizerModal');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const closeOptimizerModalButton = document.getElementById('closeOptimizerModalButton');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const promptToOptimizeInput = document.getElementById('promptToOptimizeInput');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const optimizePromptButton = document.getElementById('optimizePromptButton');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const optimizedPromptOutput = document.getElementById('optimizedPromptOutput');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const optimizedPromptText = document.getElementById('optimizedPromptText');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const optimizeButtonText = document.getElementById('optimizeButtonText');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const optimizeSpinner = document.getElementById('optimizeSpinner');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const optimizeErrorMessage = document.getElementById('optimizeErrorMessage');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>openPromptOptimizerModalButton.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>promptToOptimizeInput.value = ''; // Clear previous input</p>
+<p class="p1"><span class="Apple-converted-space">                </span>optimizedPromptOutput.classList.add('hidden'); // Hide previous output</p>
+<p class="p1"><span class="Apple-converted-space">                </span>optimizeErrorMessage.classList.add('hidden'); // Hide previous error</p>
+<p class="p1"><span class="Apple-converted-space">                </span>optimizePromptButton.disabled = false; // Enable button</p>
+<p class="p1"><span class="Apple-converted-space">                </span>optimizeButtonText.textContent = 'Optimize Et';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>optimizeSpinner.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>promptOptimizerModal.style.display = 'flex'; // Show modal</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>closeOptimizerModalButton.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>promptOptimizerModal.style.display = 'none'; // Hide modal</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>window.addEventListener('click', (event) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (event.target == promptOptimizerModal) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>promptOptimizerModal.style.display = 'none'; // Hide modal when clicking outside</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>optimizePromptButton.addEventListener('click', async () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const prompt = promptToOptimizeInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!prompt) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>optimizeErrorMessage.textContent = 'Lütfen optimize etmek istediğiniz prompt\'u girin.';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>optimizeErrorMessage.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>optimizePromptButton.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>optimizeButtonText.textContent = 'Optimize Ediliyor...';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>optimizeSpinner.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>optimizedPromptOutput.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>optimizeErrorMessage.classList.add('hidden');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const optimizationPrompt = `Sen bir prompt mühendisliği uzmanısın. Bana verilen prompt'u analiz et ve onu daha açık, daha spesifik, daha etkili hale getirmek için iyileştirme önerileri sun. Önerilerini madde işaretleri halinde ve her öneriyi kısa bir açıklama ile birlikte sun. İşte prompt: "${prompt}"`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let chatHistory = [];</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>chatHistory.push({ role: "user", parts: [{ text: optimizationPrompt }] });</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const payload = { contents: chatHistory };</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const response = await fetch(apiUrl, {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>method: 'POST',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>headers: { 'Content-Type': 'application/json' },</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>body: JSON.stringify(payload)</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const result = await response.json();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (result.candidates &amp;&amp; result.candidates.length &gt; 0 &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>result.candidates[0].content &amp;&amp; result.candidates[0].content.parts &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>result.candidates[0].content.parts.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const text = result.candidates[0].content.parts[0].text;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>optimizedPromptText.textContent = text;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>optimizedPromptOutput.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>optimizeErrorMessage.textContent = 'Prompt optimize edilemedi. Lütfen tekrar deneyin.';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>optimizeErrorMessage.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.error('Error optimizing prompt:', error);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>optimizeErrorMessage.textContent = 'Bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>optimizeErrorMessage.classList.remove('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>optimizePromptButton.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>optimizeButtonText.textContent = 'Optimize Et';</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>optimizeSpinner.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
