@@ -167,11 +167,28 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(106, 13, 173, 0.1);
+            width: 557px; /* Fixed width */
+            height: 474px; /* Fixed height */
+            max-width: 100%; /* Ensure it's responsive on smaller screens */
+            box-sizing: border-box; /* Include padding in width/height */
+            background-color: #e0f2f7; /* Light blue background from image */
+            display: flex; /* Use flexbox for overall layout */
+            flex-direction: column;
+            justify-content: space-between; /* Distribute content top to bottom */
+            align-items: center; /* Center horizontally */
         }
-    
+
+        /* Ensure content scales within the fixed size */
         .certificate-content {
             position: relative;
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to the top */
+            align-items: center;
+            height: 100%; /* Take full height of parent */
+            padding: 0 20px; /* Add horizontal padding to prevent content from touching edges */
+            text-align: center;
         }
     
         .certificate-border {
@@ -187,8 +204,17 @@
     
         .certificate-title {
             font-family: 'Playfair Display', serif;
-            color: #6A0DAD;
+            color: #4a0080; /* Darker purple for main titles */
             letter-spacing: 1px;
+            font-size: 2.5rem; /* Larger for "Prompt Engineering" */
+            line-height: 1.1;
+        }
+
+        .certificate-subtitle {
+            font-family: 'Playfair Display', serif;
+            color: #4a0080;
+            font-size: 1.8rem; /* For "10 Temel Prensip" */
+            margin-top: 0.5rem;
         }
     
         .certificate-name-input {
@@ -197,6 +223,9 @@
             color: #333;
             border-bottom: 2px solid rgba(106, 13, 173, 0.3);
             transition: all 0.3s ease;
+            text-align: center; /* Center align input text */
+            width: 80%; /* Adjust width */
+            margin-top: 1rem;
         }
     
         .certificate-name-input:focus {
@@ -205,11 +234,54 @@
     
         .certificate-seal {
             position: absolute;
-            bottom: 30px;
+            bottom: 30px; /* Adjust based on footer text height */
             right: 40px;
             width: 90px;
             height: 90px;
             opacity: 0.8;
+            color: #4a0080; /* Color for the SVG seal */
+        }
+
+        .congratulations-section {
+            background-color: #6A0DAD; /* Purple background from image */
+            width: calc(100% + 80px); /* Extend to cover padding */
+            margin-left: -40px; /* Compensate for left padding */
+            margin-right: -40px; /* Compensate for right padding */
+            margin-top: -40px; /* Compensate for top padding */
+            padding: 20px 0;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            text-align: center;
+            position: relative;
+            z-index: 0; /* Ensure it's behind other content if needed */
+        }
+
+        .congratulations-main-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem; /* Large "Tebrikler" */
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-main-content {
+            flex-grow: 1; /* Allow content to take available space */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 0;
+        }
+
+        .certificate-footer-text {
+            width: 100%;
+            text-align: center;
+            font-size: 0.75rem; /* Smaller font for footer text */
+            color: #555;
+            margin-top: auto; /* Push to bottom */
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.1); /* Subtle separator */
         }
     
         /* References styles */
@@ -236,14 +308,16 @@
             }
             
             .certificate {
-                padding: 30px 20px;
+                width: 100%; /* Full width on mobile */
+                height: auto; /* Auto height to prevent overflow */
+                padding: 20px; /* Adjust padding for mobile */
             }
             
             .certificate-seal {
                 width: 70px;
                 height: 70px;
-                bottom: 20px;
-                right: 20px;
+                bottom: 10px; /* Adjust for smaller screens */
+                right: 10px;
             }
             
             /* Mobile menu styles */
@@ -255,14 +329,47 @@
             
             .mobile-menu {
                 display: flex;
-                width: max-content;
+                width: 100%;
+                justify-content: space-around;
+                gap: 0.5rem;
             }
             
             .tab-button {
                 white-space: nowrap;
                 flex-shrink: 0;
-                padding-left: 0.75rem;
-                padding-right: 0.75rem;
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                font-size: 0.875rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr; /* Stack columns on small screens */
+                gap: 2rem;
+            }
+            .footer-col-middle {
+                text-align: center; /* Center align for mobile */
+            }
+            .footer-col-right {
+                text-align: center; /* Center align for mobile */
+            }
+
+            /* Tools section responsive adjustment */
+            .tools-item {
+                flex-direction: column; /* Stack button and text vertically */
+                align-items: center; /* Center items when stacked */
+                text-align: center;
+            }
+
+            .certificate-title {
+                font-size: 2rem; /* Smaller title on mobile */
+            }
+
+            .certificate-subtitle {
+                font-size: 1.5rem; /* Smaller subtitle on mobile */
+            }
+
+            .congratulations-main-text {
+                font-size: 2.5rem; /* Smaller "Tebrikler" on mobile */
             }
         }
     
@@ -272,7 +379,7 @@
             }
             
             .certificate {
-                padding: 20px 15px;
+                padding: 15px;
             }
             
             .certificate-border {
@@ -285,14 +392,14 @@
     
         /* Reference link styles */
         .reference-link {
-            color: #6A0DAD;
+            color: #8e44ad; /* Changed to purple */
             text-decoration: none;
             position: relative;
             transition: all 0.3s ease;
         }
     
         .reference-link:hover {
-            color: #4A0080;
+            color: #6A0DAD; /* Darker purple on hover */
         }
     
         .reference-link::after {
@@ -302,7 +409,7 @@
             height: 1px;
             bottom: -2px;
             left: 0;
-            background-color: #6A0DAD;
+            background-color: #6A0DAD; /* Purple underline */
             transform: scaleX(0);
             transform-origin: bottom right;
             transition: transform 0.3s ease;
@@ -335,7 +442,7 @@
     
         /* Enhanced footer styles */
         .footer {
-            background: linear-gradient(to right, #4a0080, #6A0DAD);
+            background-color: #4a0080; /* Solid dark purple from image */
             color: white;
             padding: 2.5rem 0;
             position: relative;
@@ -396,28 +503,6 @@
             vertical-align: middle;
         }
 
-        /* Solid purple background for certificate image area with "Tebrikler" text */
-        .congratulations-bg {
-            background-color: #6A0DAD; /* Solid purple */
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 200px; /* Adjust height as needed */
-            border-radius: 0.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .congratulations-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem; /* Adjust size as needed */
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-            z-index: 2;
-        }
-
         /* Modal Styles */
         .modal {
             display: none; /* Hidden by default */
@@ -469,7 +554,7 @@
 
         Bu HTML sayfasını bir sunucuda barındırıyorsanız,
         LinkedIn'in paylaşım önizlemesinde sertifika görselinizin görünmesini sağlamak için,
-        bu sayfanın `<head>` bölümüne aşağıdaki Open Graph meta etiketini eklemeniz GEREKİR.
+        bu sayfanın `<head>` bölümüne aşağıdaki Open Graph meta etiketini eklemeniz GEREÇKİR.
 
         'https://example.com/sertifika-gorseliniz.jpg' kısmını,
         sertifika görselinizin doğrudan erişilebilir URL'si ile DEĞİŞTİRMELİSİNİZ.
@@ -495,9 +580,10 @@
                 <div class="mobile-menu flex justify-center space-x-4 md:space-x-6">
                     <button class="tab-button active px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="intro">Giriş</button>
                     <button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="principles">Prensipler</button>
+                    <button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="tools">Araçlar</button>
                     <button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="quiz">Quiz</button>
-                    <button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="references">Kaynakça</button>
                     <button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="certificate">Sertifika</button>
+                    <button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="references">Kaynakça</button>
                 </div>
             </div>
         </div>
@@ -510,15 +596,15 @@
                 <p class="mb-4">Prompt mühendisliği, yapay zeka sistemlerinden en iyi sonuçları almak için girdileri (promptları) tasarlama ve optimize etme sanatıdır. Doğru prompt, AI'dan daha doğru, daha alakalı ve daha yararlı yanıtlar almanızı sağlar.</p>
                 <p class="mb-4">Bu interaktif rehber, etkili promptlar oluşturmanıza yardımcı olacak 10 temel prensibi öğretecek ve bu becerileri pekiştirmeniz için alıştırmalar sunacaktır.</p>
                 
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+                <div class="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 mt-8">
                     <button id="startButton" class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full sm:w-auto">
                         <span>Prensipleri Keşfet</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                    <button id="openPromptOptimizerModal" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full sm:w-auto">
-                        <span>Prompt'unu Optimize Et ✨</span>
+                    <button id="openToolsSectionButton" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full sm:w-auto">
+                        <span>Optimizasyon Araçları ✨</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
                         </svg>
@@ -577,6 +663,65 @@
                 </div>
         </section>
 
+        <section id="tools" class="tab-content">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-900 mb-4">Prompt Araçları</h2>
+                <p class="mb-4">Yapay zeka ile etkileşiminizi geliştirmek için tasarlanmış kullanışlı araçlarımızı keşfedin.</p>
+                
+                <div class="flex flex-col gap-6 mt-8">
+                    <div class="tools-item flex flex-col items-start gap-2">
+                        <button id="openPromptOptimizerModal" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full">
+                            <span>Prompt'unu Optimize Et ✨</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                            </svg>
+                        </button>
+                        <p class="text-gray-700 text-left w-full">Yazdığınız prompt'u analiz eder ve daha etkili hale getirmek için iyileştirme önerileri sunar.</p>
+                    </div>
+
+                    <div class="tools-item flex flex-col items-start gap-2">
+                        <button id="openSummarizeTextModal" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full">
+                            <span>Metin Özetle ✨</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M4 9h16v2H4zm0 4h16v2H4zm0 4h16v2H4zm0-8h16V7H4z"/>
+                            </svg>
+                        </button>
+                        <p class="text-gray-700 text-left w-full">Uzun metinleri hızlıca özetleyerek ana fikirleri anlamanıza yardımcı olur.</p>
+                    </div>
+
+                    <div class="tools-item flex flex-col items-start gap-2">
+                        <button id="openPromptDeveloperModal" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full">
+                            <span>Prompt Geliştirici ✨</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                            </svg>
+                        </button>
+                        <p class="text-gray-700 text-left w-full">Basit bir fikri, yapay zeka için detaylı ve etkili bir prompt'a dönüştürür.</p>
+                    </div>
+
+                    <div class="tools-item flex flex-col items-start gap-2">
+                        <button id="openCreativeWriterModal" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full">
+                            <span>Yaratıcı Yazı Oluşturucu ✨</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="currentColor">
+                                <path d="M3 17.25V21h3.75L18.5 9.75l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                            </svg>
+                        </button>
+                        <p class="text-gray-700 text-left w-full">Belirttiğiniz konuda kısa ve yaratıcı metinler oluşturarak ilham verir.</p>
+                    </div>
+
+                    <div class="tools-item flex flex-col items-start gap-2">
+                        <button id="openPromptAnalysisScorerModal" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full">
+                            <span>Prompt Analiz & Puanlayıcı ✨</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 15H9v-2h2v2zm0-4H9V8h2v4z"/>
+                            </svg>
+                        </button>
+                        <p class="text-gray-700 text-left w-full">Prompt'unuzun etkinliğini değerlendirir, puanlar ve detaylı geri bildirim sunar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="quiz" class="tab-content">
             <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
                 <h2 class="text-2xl font-bold text-purple-900 mb-4">Prompt Engineering Bilgi Testi</h2>
@@ -586,14 +731,14 @@
                     <div id="quizProgress" class="progress" style="width: 0%"></div>
                 </div>
                 <div class="flex justify-between text-sm text-gray-600 mb-6">
-                    <span id="quizScore">Puan: 0/5</span>
-                    <span id="quizCounter">Soru 1/5</span>
+                    <span id="quizScore">Puan: 0/16</span>
+                    <span id="quizCounter">Soru 1/16</span>
                 </div>
                 
                 <div id="quizContainer">
                     </div>
                 
-                <div class="mt-6 flex justify-between">
+                <div class="mt-6 flex justify-between items-center">
                     <button id="prevQuestion" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-1" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -608,6 +753,92 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline ml-1" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
+                    </button>
+                    <button id="goToCertificateButton" class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg hidden">
+                        Sertifikayı Görüntüle
+                    </button>
+                </div>
+                <div class="mt-6 text-center">
+                    <button id="generateNewQuizButton" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 flex items-center justify-center mx-auto">
+                        <span id="generateQuizButtonText">Yeni Quiz Oluştur ✨</span>
+                        <svg id="generateQuizSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </button>
+                    <p id="generateQuizErrorMessage" class="text-red-500 text-sm mt-2 hidden"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificate" class="tab-content">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-900 mb-4">Başarı Sertifikası</h2>
+                <div id="certificateRequirements" class="mb-6">
+                    <p class="mb-4">Sertifikanızı almak için aşağıdaki işlemleri tamamlamanız gerekmektedir:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li id="req-principles" class="text-red-600">
+                            <span class="font-medium">Tüm prensipleri inceleme</span> 
+                            <span class="ml-2">(0/10 tamamlandı)</span>
+                        </li>
+                        <li id="req-quiz" class="text-red-600">
+                            <span class="font-medium">Quiz'i tamamlama</span> 
+                            <span class="ml-2">(0/16 tamamlandı)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div id="certificateContainer" class="certificate mx-auto max-w-2xl mb-8">
+                    <div class="certificate-border"></div>
+                    
+                    <div class="congratulations-section">
+                        <h2 class="congratulations-main-text">Tebrikler</h2>
+                    </div>
+
+                    <div class="certificate-main-content">
+                        <h3 class="certificate-title font-bold">Prompt Engineering</h3>
+                        <p class="certificate-subtitle font-medium">10 Temel Prensip</p>
+                        <p class="text-gray-600 mt-4">eğitimini başarıyla tamamladığını onaylar.</p>
+                        
+                        <div class="mb-6">
+                            <input type="text" id="certificateName" placeholder="Adınız" class="certificate-name-input text-2xl font-semibold w-full border-none focus:outline-none bg-transparent py-2">
+                        </div>
+                        
+                        <div class="flex justify-between w-full max-w-xs mx-auto text-sm text-gray-700 mb-4">
+                            <p>Tarih: <span id="certificateDate"></span></p>
+                            <p>Sertifika No: <span id="certificateNumber"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="certificate-footer-text">
+                        <p class="mb-1">Bu sayfada yer alan bilgiler, kaynak gösterilen içeriklerden derlenmiştir. Sertifikanın yasal bir geçerliliği yoktur, sadece eğitim amacıyla ve kar gütmeden hazırlanmıştır.</p>
+                        <p class="font-medium text-purple-800">Semanur Ayyıldız</p>
+                        <p class="text-purple-700">Görsel İletişim Tasarımı ve Dijital Dönüşüm Uzmanı</p>
+                        <a href="https://www.linkedin.com/in/semayy/" target="_blank" class="text-purple-600 hover:underline">linkedin.com/in/semayy</a>
+                        <p class="mt-2 text-gray-600">© 2025 Prompt Engineering Temel Seviye Eğitimi. Tüm hakları saklıdır.</p>
+                    </div>
+
+                    <div class="certificate-seal">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                            <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="1"></circle>
+                            <path fill="currentColor" d="M50 10 L60 30 L80 30 L65 45 L70 65 L50 55 L30 65 L35 45 L20 30 L40 30 Z"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="text-center flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <button id="shareLinkedIn" class="linkedin-share-btn hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        LinkedIn'de Paylaş
+                    </button>
+                    <button id="saveCertificateButton" class="save-certificate-btn hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V11M13 3V9H21M13 3L21 11M17 17H7V15H17V17Z"/>
+                        </svg>
+                        Sertifikayı Kaydet
                     </button>
                 </div>
             </div>
@@ -679,80 +910,29 @@
                         <p class="text-gray-700">Microsoft'un Copilot için geliştirdiği prompt kalıpları ve etkili kullanım stratejileri.</p>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section id="certificate" class="tab-content">
-            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
-                <h2 class="text-2xl font-bold text-purple-900 mb-4">Başarı Sertifikası</h2>
-                <div id="certificateRequirements" class="mb-6">
-                    <p class="mb-4">Sertifikanızı almak için aşağıdaki işlemleri tamamlamanız gerekmektedir:</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li id="req-principles" class="text-red-600">
-                            <span class="font-medium">Tüm prensipleri inceleme</span> 
-                            <span class="ml-2">(0/10 tamamlandı)</span>
-                        </li>
-                        <li id="req-quiz" class="text-red-600">
-                            <span class="font-medium">Quiz'i tamamlama</span> 
-                            <span class="ml-2">(0/5 tamamlandı)</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div id="certificateContainer" class="certificate mx-auto max-w-2xl mb-8">
-                    <div class="certificate-border"></div>
-                    
-                    <div class="certificate-content text-center relative">
-                        <div class="mb-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
+                <div class="mt-8 pt-6 border-t border-gray-200">
+                    <h2 class="text-2xl font-bold text-purple-900 mb-6">Gelişmiş Prompt Mühendisliği Teknikleri</h2>
+                    <div class="space-y-6">
+                        <div class="reference-item">
+                            <h3 class="text-lg font-semibold text-purple-900 mb-2">Düşünce Zinciri (Chain of Thought) Prompting</h3>
+                            <p class="text-gray-700">Karmaşık problemleri küçük, ardışık adımlara bölerek modelin mantıksal bir ilerleme yolu izlemesini sağlayan bir tekniktir. Bu, daha tutarlı ve doğru yanıtlar elde etmeye yardımcı olur.</p>
+                            <p class="text-gray-600 mt-2">**Örnek:** "Bir e-ticaret şirketinin müşteri kaybını azaltmak için stratejiler geliştir. İlk olarak, müşteri kaybının yaygın nedenlerini listele. Ardından, bu nedenlere yönelik 3 farklı strateji öner. Son olarak, her bir stratejinin potansiyel faydalarını ve zorluklarını değerlendir."</p>
                         </div>
-                        
-                        <h3 class="certificate-title text-3xl font-bold mb-2">Başarı Sertifikası</h3>
-                        <p class="text-gray-600 mb-8">Bu belge</p>
-                        
-                        <div class="mb-8">
-                            <input type="text" id="certificateName" placeholder="Adınızı girin" class="certificate-name-input text-center text-2xl font-semibold w-full border-none focus:outline-none bg-transparent py-2">
+                        <div class="reference-item">
+                            <h3 class="text-lg font-semibold text-purple-900 mb-2">Az Atışlı (Few-Shot) ve Sıfır Atışlı (Zero-Shot) Prompting</h3>
+                            <p class="text-gray-700">
+                                <strong>Sıfır Atışlı (Zero-Shot):</strong> Modele herhangi bir örnek vermeden doğrudan görevi tanımlamaktır. Modelin genel bilgisini kullanması beklenir.<br>
+                                <strong>Az Atışlı (Few-Shot):</strong> Modele istenen çıktı formatını veya stilini göstermek için birkaç örnek (genellikle 1-3) verilmesidir. Bu, modelin desenleri anlamasına ve daha doğru yanıtlar üretmesine yardımcı olur.
+                            </p>
+                            <p class="text-gray-600 mt-2">**Örnek (Az Atışlı):** "Aşağıdaki örneklere göre bir ürün açıklamasının duygusunu sınıflandır:\n\nÖrnek 1: 'Bu ürün harika! Hayatımı değiştirdi.' → Duygu: Pozitif\nÖrnek 2: 'Tamamen zaman kaybı, tavsiye etmiyorum.' → Duygu: Negatif\n\nŞimdi şu yorumun duygusunu sınıflandır: 'Beklediğimden çok daha iyi çıktı!'"</p>
                         </div>
-                        
-                        <p class="mb-4 text-gray-700">adlı kişinin</p>
-                        <h4 class="text-xl font-bold text-purple-900 mb-6">Prompt Engineering: 10 Temel Prensip</h4>
-                        <p class="mb-8 text-gray-700">eğitimini başarıyla tamamladığını onaylar.</p>
-                        
-                        <div class="mb-8 p-4 bg-purple-700 rounded-lg border border-purple-800 relative overflow-hidden">
-                            <div class="congratulations-bg w-full h-40 flex items-center justify-center text-white text-5xl font-bold rounded-md">
-                                <span class="congratulations-text">Tebrikler</span>
-                            </div>
-                        </div>
-
-                        <div class="mb-8 text-lg font-semibold text-gray-700">
-                            <p>Sertifika No: <span id="certificateNumber"></span></p>
-                            <p>Tarih: <span id="certificateDate"></span></p>
-                        </div>
-
-                        <div class="certificate-seal">
-                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="50" cy="50" r="48" fill="none" stroke="#6A0DAD" stroke-width="2"></circle>
-                                <circle cx="50" cy="50" r="40" fill="none" stroke="#6A0DAD" stroke-width="1"></circle>
-                                </svg>
+                        <div class="reference-item">
+                            <h3 class="text-lg font-semibold text-purple-900 mb-2">Meta Prompting / Prompt Zincirleme</h3>
+                            <p class="text-gray-700">Birden fazla prompt'u art arda kullanarak daha karmaşık görevleri tamamlamayı veya bir prompt'un çıktısını bir sonraki prompt'un girdisi olarak kullanmayı içeren tekniklerdir. Bu, AI'nın daha derinlemesine analizler yapmasını veya çok adımlı süreçleri yönetmesini sağlar.</p>
+                            <p class="text-gray-600 mt-2">**Örnek:** "Adım 1: 'Yapay zeka ve otomasyonla ilgili 5 blog konusu oluştur.'\nAdım 2: 'Oluşturduğun ikinci konuyu seç ve 5 alt başlık içeren bir taslak hazırla.'\nAdım 3: 'Hazırladığın taslağı kullanarak 500 kelimelik bir blog yazısı yaz.'"</p>
                         </div>
                     </div>
-                </div>
-                
-                <div class="text-center flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <button id="shareLinkedIn" class="linkedin-share-btn hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                        LinkedIn'de Paylaş
-                    </button>
-                    <button id="saveCertificateButton" class="save-certificate-btn hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M13 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V11M13 3V9H21M13 3L21 11M17 17H7V15H17V17Z"/>
-                        </svg>
-                        Sertifikayı Kaydet
-                    </button>
                 </div>
             </div>
         </section>
@@ -760,25 +940,42 @@
 
     <footer class="footer">
         <div class="container mx-auto px-4 footer-content">
-            <div class="max-w-4xl mx-auto text-center mb-8">
-                <p class="mb-6 text-lg">Bu sayfada yer alan bilgiler, kaynak gösterilen içeriklerden derlenmiştir. Sertifikanın yasal bir geçerliliği yoktur, sadece eğitim amacıyla ve kar gütmeden hazırlanmıştır.</p>
-                
-                <div class="inline-flex flex-wrap justify-center items-center mb-6">
-                    <span class="font-medium">Semanur Ayyıldız</span>
-                    <span class="footer-divider"></span>
-                    <span>Görsel İletişim Tasarımı ve Dijital Dönüşüm Uzmanı</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mb-8">
+                <div class="footer-col-left text-center md:text-left">
+                    <h4 class="text-xl font-semibold mb-4">Hakkında</h4>
+                    <p class="text-gray-200 text-sm leading-relaxed">
+                        Bu karşılaştırma tablosu, modern içerik üretiminin iki temel disiplini olan Yaratıcı Metin Yazarlığı ve Prompt Yazarlığı arasındaki farkları ve benzerlikleri anlamanıza yardımcı olmak için hazırlanmıştır.
+                    </p>
                 </div>
                 
-                <a href="https://www.linkedin.com/in/semayy/" target="_blank" class="footer-link inline-flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                <div class="footer-col-right text-center md:text-right">
+                    <h4 class="text-xl font-semibold mb-4">İletişim</h4>
+                    <p class="text-gray-200 text-sm mb-2">
+                        Sorularınız veya geri bildirimleriniz için LinkedIn üzerinden iletişime geçebilirsiniz:
+                    </p>
+                    <a href="https://www.linkedin.com/in/semayy/" target="_blank" class="footer-link inline-flex items-center text-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                         </svg>
-                    linkedin.com/in/semayy
-                </a>
+                        linkedin.com/in/semayy
+                    </a>
+                </div>
             </div>
             
-            <div class="border-t border-purple-400 border-opacity-30 pt-6">
-                <p class="text-center text-sm opacity-80">© 2025 Prompt Engineering Temel Seviye Eğitimi. Tüm hakları saklıdır.</p>
+            <div class="border-t border-purple-400 border-opacity-30 pt-6 flex flex-col sm:flex-row justify-between items-center text-sm">
+                <div class="footer-col-middle flex items-center mb-4 sm:mb-0 text-center sm:text-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                    <div>
+                        <span class="font-medium">Semanur Ayyıldız</span><br>
+                        <span class="text-gray-300">Görsel İletişim Tasarımı ve Dijital Dönüşüm Uzmanı</span>
+                    </div>
+                </div>
+                
+                <div class="footer-col-bottom text-center sm:text-right">
+                    <p class="opacity-80">© 2025 Tüm Hakları Saklıdır. Bu içerik eğitim amaçlıdır.</p>
+                </div>
             </div>
         </div>
     </footer>
@@ -787,7 +984,7 @@
         <div class="modal-content">
             <span class="close-button" id="closeModalButton">&times;</span>
             <h3 class="text-xl font-bold text-purple-900 mb-4">✨ Kendi Örneğini Oluştur</h3>
-            <p class="mb-4">Hangi konuda örnek prompt oluşturmak istersiniz?</p>
+            <p class="mb-4">Hangi konuda örnek içerik oluşturmak istersiniz?</p>
             <input type="text" id="exampleTopicInput" placeholder="Örn: Yemek tarifi, Pazarlama stratejisi..."
                    class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-500">
             <button id="generateExampleButton"
@@ -831,6 +1028,105 @@
         </div>
     </div>
 
+    <div id="summarizeTextModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeSummarizeModalButton">&times;</span>
+            <h3 class="text-xl font-bold text-green-800 mb-4">Metin Özetle ✨</h3>
+            <p class="mb-4">Özetlemek istediğiniz metni buraya yapıştırın. Yapay zeka size kısa bir özet sunacaktır.</p>
+            <textarea id="textToSummarizeInput" 
+                      placeholder="Özetlenecek metni buraya girin..." 
+                      class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-green-500" 
+                      rows="8"></textarea>
+            <button id="summarizeTextButton"
+                    class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-full">
+                <span id="summarizeButtonText">Özetle</span>
+                <svg id="summarizeSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </button>
+            <div id="summarizedTextOutput" class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200 hidden">
+                <p class="font-medium text-green-700 mb-2">Özetlenen Metin:</p>
+                <p id="summarizedText" class="text-gray-800 whitespace-pre-wrap"></p>
+            </div>
+            <p id="summarizeErrorMessage" class="text-red-500 text-sm mt-2 hidden"></p>
+        </div>
+    </div>
+
+    <div id="promptDeveloperModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closePromptDeveloperModalButton">&times;</span>
+            <h3 class="text-xl font-bold text-indigo-800 mb-4">Prompt Geliştirici ✨</h3>
+            <p class="mb-4">Basit bir fikir girin, yapay zeka bunu detaylı bir prompt'a dönüştürsün.</p>
+            <textarea id="promptIdeaInput" 
+                      placeholder="Örn: 'Bir yemek tarifi oluştur' gibi basit bir fikir girin." 
+                      class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" 
+                      rows="4"></textarea>
+            <button id="developPromptButton"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-full">
+                <span id="developButtonText">Prompt Geliştir</span>
+                <svg id="developSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </button>
+            <div id="developedPromptOutput" class="mt-4 p-4 bg-indigo-50 rounded-lg border border-indigo-200 hidden">
+                <p class="font-medium text-indigo-700 mb-2">Geliştirilen Prompt:</p>
+                <p id="developedPromptText" class="text-gray-800 whitespace-pre-wrap"></p>
+            </div>
+            <p id="developErrorMessage" class="text-red-500 text-sm mt-2 hidden"></p>
+        </div>
+    </div>
+
+    <div id="creativeWriterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeCreativeWriterModalButton">&times;</span>
+            <h3 class="text-xl font-bold text-pink-800 mb-4">Yaratıcı Yazı Oluşturucu ✨</h3>
+            <p class="mb-4">Bir konu girin, yapay zeka size kısa ve yaratıcı bir metin oluştursun.</p>
+            <input type="text" id="creativeTopicInput" placeholder="Örn: Uzayda bir kedi, Kayıp bir hazine..."
+                   class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-pink-500">
+            <button id="generateCreativeTextButton"
+                    class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-full">
+                <span id="creativeButtonText">Yazı Oluştur</span>
+                <svg id="creativeSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </button>
+            <div id="creativeTextOutput" class="mt-4 p-4 bg-pink-50 rounded-lg border border-pink-200 hidden">
+                <p class="font-medium text-pink-700 mb-2">Oluşturulan Metin:</p>
+                <p id="generatedCreativeText" class="text-gray-800 whitespace-pre-wrap"></p>
+            </div>
+            <p id="creativeErrorMessage" class="text-red-500 text-sm mt-2 hidden"></p>
+        </div>
+    </div>
+
+    <div id="promptAnalysisScorerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closePromptAnalysisScorerModalButton">&times;</span>
+            <h3 class="text-xl font-bold text-purple-800 mb-4">Prompt Analiz & Puanlayıcı ✨</h3>
+            <p class="mb-4">Analiz etmek ve puanlamak istediğiniz prompt'u girin. Yapay zeka size detaylı bir geri bildirim sunacaktır.</p>
+            <textarea id="promptToAnalyzeInput" 
+                      placeholder="Örn: 'Bana 2024 Türkiye ekonomisi hakkında detaylı bir rapor yaz.' gibi bir prompt girin." 
+                      class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-500" 
+                      rows="6"></textarea>
+            <button id="analyzePromptButton"
+                    class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-full">
+                <span id="analyzeButtonText">Analiz Et & Puanla</span>
+                <svg id="analyzeSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </button>
+            <div id="analyzedPromptOutput" class="mt-4 p-4 bg-purple-50 rounded-lg border border-purple-200 hidden">
+                <p class="font-medium text-purple-700 mb-2">Analiz Sonuçları:</p>
+                <p id="analyzedPromptText" class="text-gray-800 whitespace-pre-wrap"></p>
+            </div>
+            <p id="analyzeErrorMessage" class="text-red-500 text-sm mt-2 hidden"></p>
+        </div>
+    </div>
+
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Progress tracking
@@ -864,6 +1160,9 @@
                     }
                 });
             });
+
+            // Footer hızlı dolaşım menüsü tıklamaları
+            // Removed as per new footer design.
             
             // Start button redirects to principles tab
             document.getElementById('startButton').addEventListener('click', () => {
@@ -876,6 +1175,20 @@
                 // Scroll the principles tab into view in mobile menu
                 if (window.innerWidth <= 768) {
                     document.querySelector('[data-tab="principles"]').scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            });
+
+            // Optimizasyon Araçları butonu redirects to tools tab
+            document.getElementById('openToolsSectionButton').addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                document.querySelector('[data-tab="tools"]').classList.add('active');
+                document.getElementById('tools').classList.add('active');
+                
+                // Scroll the tools tab into view in mobile menu
+                if (window.innerWidth <= 768) {
+                    document.querySelector('[data-tab="tools"]').scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 }
             });
             
@@ -1046,7 +1359,7 @@
             createPrincipleCards();
             
             // Quiz functionality
-            const quizQuestions = [
+            let quizQuestions = [ // Changed to let so it can be updated
                 {
                     question: "Aşağıdakilerden hangisi etkili bir prompt'un özelliği değildir?",
                     options: [
@@ -1096,6 +1409,116 @@
                         "AI'nın kendi kendine yanıtlarını düzeltmesini beklemek"
                     ],
                     correctAnswer: 2
+                },
+                {
+                    question: "Prompt'ta 'kısıtlamalar belirtme' neden önemlidir?",
+                    options: [
+                        "AI'nın yaratıcılığını sınırlamak için",
+                        "Yanıtın uzunluğunu ve tonunu kontrol etmek için",
+                        "Sadece belirli anahtar kelimelerin kullanılmasını sağlamak için",
+                        "AI'nın daha hızlı yanıt vermesini sağlamak için"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Çoklu perspektif istemek, AI yanıtlarını nasıl etkiler?",
+                    options: [
+                        "Yanıtı daha kısa ve öz hale getirir",
+                        "Yanıtın tek bir bakış açısıyla sınırlı kalmasını sağlar",
+                        "Daha kapsamlı ve dengeli yanıtlar elde edilmesini sağlar",
+                        "AI'nın kafasını karıştırır ve hatalı yanıtlar üretmesine neden olur"
+                    ],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Bir prompt'u adım adım talimatlarla bölmek neye yardımcı olur?",
+                    options: [
+                        "AI'nın daha hızlı çalışmasına",
+                        "AI'nın her adımı sırayla takip etmesine ve daha doğru sonuçlar üretmesine",
+                        "Prompt'u daha karmaşık hale getirmeye",
+                        "AI'nın daha fazla bilgi istemesine"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Sıfır atışlı (Zero-Shot) prompting'in temel özelliği nedir?",
+                    options: [
+                        "Modele çok sayıda örnek vermek",
+                        "Modele hiç örnek vermeden doğrudan görevi tanımlamak",
+                        "Modele sadece bir örnek vermek",
+                        "Modele sadece kötü örnekler vermek"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Prompt mühendisliğinde 'geri bildirim verme' neden önemlidir?",
+                    options: [
+                        "AI'nın hatalarını düzeltmesini sağlamak için",
+                        "Gelecekteki yanıtların daha iyi hizalanmasını sağlamak için",
+                        "Sadece olumlu geri bildirim vermek için",
+                        "AI'nın daha az yanıt üretmesini sağlamak için"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Aşağıdakilerden hangisi 'Düşünce Zinciri (Chain of Thought) Prompting' tekniğinin bir faydasıdır?",
+                    options: [
+                        "Daha kısa promptlar oluşturmak",
+                        "AI'nın karmaşık problemleri mantıksal adımlarla çözmesini sağlamak",
+                        "Daha yaratıcı yanıtlar almak",
+                        "AI'nın daha az enerji tüketmesini sağlamak"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Bir prompt'ta 'ton' belirtmek ne anlama gelir?",
+                    options: [
+                        "Yanıtın ses yüksekliğini ayarlamak",
+                        "Yanıtın duygusal veya stilistik özelliğini (resmi, samimi, komik vb.) belirlemek",
+                        "Yanıtın uzunluğunu ayarlamak",
+                        "Yanıtın dilini seçmek"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Prompt'ta 'hedef kitle' belirtmek neden önemlidir?",
+                    options: [
+                        "AI'nın yanıtı kimin okuyacağını bilmesini sağlamak için",
+                        "Yanıtın karmaşıklık seviyesini ve kullanılan dili ayarlamak için",
+                        "Sadece belirli bir demografiye hitap etmek için",
+                        "AI'nın daha hızlı yanıt vermesini sağlamak için"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Prompt'ta 'çıktı formatı' belirtmenin en büyük faydası nedir?",
+                    options: [
+                        "AI'nın daha fazla bilgi üretmesini sağlamak",
+                        "Yanıtın belirli bir yapıya (liste, tablo, paragraf vb.) sahip olmasını sağlamak",
+                        "AI'nın daha az kelime kullanmasını sağlamak",
+                        "Yanıtın daha hızlı üretilmesini sağlamak"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "Prompt mühendisliğinde 'negatif kısıtlamalar' neyi ifade eder?",
+                    options: [
+                        "AI'ya ne yapmaması gerektiğini söylemek",
+                        "AI'ya sadece olumsuz yanıtlar vermesini söylemek",
+                        "AI'nın hata yapmasını engellemek",
+                        "AI'nın daha az bilgi üretmesini sağlamak"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Bir prompt'u test etme ve iyileştirme süreci neden önemlidir?",
+                    options: [
+                        "Sadece zaman kaybıdır",
+                        "AI'nın her zaman mükemmel yanıtlar vermesini sağlamak için",
+                        "İstenen sonuçları elde etmek için prompt'u optimize etmek ve ayarlamak için",
+                        "AI'nın daha az prompt almasını sağlamak için"
+                    ],
+                    correctAnswer: 2
                 }
             ];
             
@@ -1103,10 +1526,22 @@
             let quizScore = 0;
             let questionAnswered = false;
             
+            const quizContainer = document.getElementById('quizContainer');
+            const goToCertificateButton = document.getElementById('goToCertificateButton');
+            
+            // updateQuizContent fonksiyonunu tanımla
             function updateQuizContent(index) {
                 const question = quizQuestions[index];
-                const quizContainer = document.getElementById('quizContainer');
                 
+                if (!quizContainer) {
+                    console.error("Hata: 'quizContainer' ID'sine sahip element bulunamadı. Quiz içeriği yüklenemiyor.");
+                    const quizSection = document.getElementById('quiz');
+                    if (quizSection) {
+                        quizSection.innerHTML = '<p class="text-red-500 text-center">Quiz yüklenirken bir hata oluştu. Lütfen sayfayı yenileyin.</p>';
+                    }
+                    return;
+                }
+
                 quizContainer.innerHTML = `
                     <div class="quiz-question">
                         <h3 class="text-lg font-semibold text-purple-900 mb-3">${index + 1}. ${question.question}</h3>
@@ -1148,20 +1583,28 @@
                 document.getElementById('prevQuestion').disabled = index === 0;
                 document.getElementById('checkAnswer').style.display = 'block';
                 document.getElementById('nextQuestion').style.display = 'none';
+                goToCertificateButton.style.display = 'none'; // Hide certificate button by default
                 
                 // Reset question state
                 questionAnswered = false;
             }
             
             // Initialize first question
-            updateQuizContent(currentQuestionIndex);
+            if (quizContainer) {
+                updateQuizContent(currentQuestionIndex);
+            } else {
+                console.error("Quiz başlatılamadı: 'quizContainer' elementi bulunamadı.");
+                const quizSection = document.getElementById('quiz');
+                if (quizSection) {
+                    quizSection.innerHTML = '<p class="text-red-500 text-center">Quiz yüklenirken bir hata oluştu. Lütfen sayfayı yenileyin.</p>';
+                }
+            }
             
             // Check answer button
             document.getElementById('checkAnswer').addEventListener('click', function() {
                 const selectedOption = document.querySelector('.quiz-option.selected');
                 
                 if (!selectedOption && !questionAnswered) {
-                    // Use a custom message box instead of alert
                     showCustomMessage('Lütfen bir cevap seçin!');
                     return;
                 }
@@ -1173,8 +1616,8 @@
                     const correctIndex = quizQuestions[currentQuestionIndex].correctAnswer;
                     
                     if (selectedIndex === correctIndex) {
-                        selectedOption.classList.add('correct');
                         quizScore++;
+                        selectedOption.classList.add('correct');
                     } else {
                         selectedOption.classList.add('incorrect');
                         document.querySelectorAll('.quiz-option')[correctIndex].classList.add('correct');
@@ -1183,16 +1626,13 @@
                     // Update score
                     document.getElementById('quizScore').textContent = `Puan: ${quizScore}/${quizQuestions.length}`;
                     
-                    // Show next button
+                    // Show next button or certificate button
                     this.style.display = 'none';
                     
                     if (currentQuestionIndex < quizQuestions.length - 1) {
                         document.getElementById('nextQuestion').style.display = 'block';
                     } else {
-                        // If last question, show a completion message or redirect
-                        document.getElementById('nextQuestion').textContent = 'Kaynakçaya Geç';
-                        document.getElementById('nextQuestion').style.display = 'block';
-                        
+                        goToCertificateButton.style.display = 'block'; // Show certificate button on last question
                         // Update progress for certificate
                         progress.quizCompleted = quizScore;
                         updateCertificateRequirements();
@@ -1206,9 +1646,15 @@
                     currentQuestionIndex++;
                     updateQuizContent(currentQuestionIndex);
                 } else {
-                    // Go to references tab when finished with all questions
-                    document.querySelector('[data-tab="references"]').click();
+                    // This block should ideally not be reached if goToCertificateButton is handled
+                    // But as a fallback, if it's the last question and next is clicked, go to certificate
+                    document.querySelector('[data-tab="certificate"]').click();
                 }
+            });
+
+            // Go to Certificate button on Quiz page
+            goToCertificateButton.addEventListener('click', () => {
+                document.querySelector('[data-tab="certificate"]').click();
             });
             
             // Previous question button
@@ -1223,7 +1669,7 @@
             function updateCertificateRequirements() {
                 const principlesReq = document.getElementById('req-principles');
                 const quizReq = document.getElementById('req-quiz');
-                const saveButton = document.getElementById('saveCertificateButton'); // Get the save button
+                const saveButton = document.getElementById('saveCertificateButton');
                 
                 // Update principles requirement
                 if (progress.principles.size === principles.length) {
@@ -1236,8 +1682,9 @@
                     principlesReq.querySelector('span:last-child').textContent = `(${progress.principles.size}/${principles.length} tamamlandı)`;
                 }
                 
-                // Update quiz requirement
-                if (progress.quizCompleted >= 3) { // Pass with at least 3 correct answers
+                // Update quiz requirement (70% threshold for 16 questions = 12 correct answers)
+                const requiredQuizScore = Math.ceil(quizQuestions.length * 0.70);
+                if (progress.quizCompleted >= requiredQuizScore) {
                     quizReq.classList.remove('text-red-600');
                     quizReq.classList.add('text-green-600');
                     quizReq.querySelector('span:last-child').textContent = `(${progress.quizCompleted}/${quizQuestions.length} tamamlandı)`;
@@ -1269,14 +1716,14 @@
             // Check if user is eligible for certificate
             function checkCertificateEligibility() {
                 const shareButton = document.getElementById('shareLinkedIn');
-                const saveButton = document.getElementById('saveCertificateButton'); // Get the save button
+                const saveButton = document.getElementById('saveCertificateButton');
                 const allRequirementsMet = 
                     progress.principles.size === principles.length && 
-                    progress.quizCompleted >= 3;
+                    progress.quizCompleted >= Math.ceil(quizQuestions.length * 0.70); // 70% threshold
                 
                 if (allRequirementsMet) {
                     shareButton.disabled = false;
-                    saveButton.disabled = false; // Enable save button
+                    saveButton.disabled = false;
                     document.getElementById('certificateRequirements').innerHTML = `
                         <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
                             <p class="font-medium text-green-700">Tebrikler! Tüm gereksinimleri tamamladınız.</p>
@@ -1285,7 +1732,7 @@
                     `;
                 } else {
                     shareButton.disabled = true;
-                    saveButton.disabled = true; // Disable save button
+                    saveButton.disabled = true;
                 }
             }
             
@@ -1298,8 +1745,8 @@
                     return;
                 }
                 
-                // Create LinkedIn share URL
-                const shareText = encodeURIComponent(`${name} olarak Prompt Engineering: 10 Temel Prensip eğitimini tamamladım! #PromptEngineering #YapayAITr #AI`);
+                // Updated LinkedIn share message
+                const shareText = encodeURIComponent(`Eğitimi başarıyla tamamladığımı duyurmaktan onur duyarım, ilgili linkten siz de eğitime gidebilirsiniz.`);
                 const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}&title=${shareText}`;
                 
                 // Open LinkedIn share dialog in a new window
@@ -1324,36 +1771,27 @@
                 certificateRequirements.style.display = 'none';
 
                 const certificateSection = document.getElementById('certificateContainer'); // Capture only the certificate content
-                const footerElement = document.querySelector('.footer');
-
-                // Create a temporary container to render both certificate and footer
+                
+                // Create a temporary container to render the certificate for capture
                 const tempContainer = document.createElement('div');
                 tempContainer.style.position = 'absolute'; // Position off-screen
                 tempContainer.style.left = '-9999px';
                 tempContainer.style.top = '-9999px';
-                tempContainer.style.width = certificateSection.offsetWidth + 'px'; // Match width of certificate section
-                tempContainer.style.backgroundColor = '#f8f5fe'; // Match body background
-                tempContainer.style.padding = '20px'; // Add some padding around the content
-                tempContainer.style.display = 'flex'; // Use flexbox for vertical alignment
-                tempContainer.style.flexDirection = 'column';
-                tempContainer.style.alignItems = 'center'; // Center horizontally
+                // Set the exact dimensions for the temporary container to match the certificate
+                tempContainer.style.width = '557px';
+                tempContainer.style.height = '474px';
+                tempContainer.style.overflow = 'hidden'; // Hide overflow if content is larger than fixed size
+                tempContainer.style.backgroundColor = '#e0f2f7'; // Match certificate background
 
-                // Clone the certificate container's content
-                const certificateContentToClone = document.getElementById('certificateContainer').cloneNode(true);
+                // Clone the certificate container's content and append to tempContainer
+                const certificateContentToClone = certificateSection.cloneNode(true);
+                // Remove the outer shadow and border from the cloned content if they are not part of the certificate design
+                certificateContentToClone.style.boxShadow = 'none';
+                certificateContentToClone.style.border = 'none';
+                certificateContentToClone.style.margin = '0'; // Remove any external margins
+                certificateContentToClone.style.width = '100%'; // Ensure it fills the temp container
+                certificateContentToClone.style.height = '100%'; // Ensure it fills the temp container
                 tempContainer.appendChild(certificateContentToClone);
-
-                // Add a visual separator if desired, or just space
-                const separator = document.createElement('div');
-                separator.style.height = '40px'; // Space between certificate and footer
-                tempContainer.appendChild(separator);
-
-                // Clone the footer content
-                const clonedFooterContent = footerElement.cloneNode(true);
-                clonedFooterContent.style.position = 'static'; // Ensure it flows normally
-                clonedFooterContent.style.width = '100%'; // Ensure it takes full width
-                clonedFooterContent.style.boxShadow = 'none'; // Remove shadow if it causes issues
-                clonedFooterContent.style.borderRadius = '0'; // Remove border-radius if it causes issues
-                tempContainer.appendChild(clonedFooterContent);
 
                 document.body.appendChild(tempContainer);
 
@@ -1362,7 +1800,7 @@
                         scale: 2, // Increase scale for better quality (e.g., 2 or 3)
                         useCORS: true, // Important if images/fonts are from different origins
                         logging: false, // Disable logging for cleaner console
-                        backgroundColor: '#f8f5fe' // Ensure consistent background
+                        backgroundColor: '#e0f2f7' // Ensure consistent background for the capture
                     });
 
                     const imageData = canvas.toDataURL('image/png');
@@ -1480,13 +1918,14 @@
                 generatedExampleOutput.classList.add('hidden');
                 generateErrorMessage.classList.add('hidden');
 
-                const prompt = `Bir prompt mühendisliği prensibi olan '${currentPrincipleTitle}' prensibini kullanarak, '${topic}' hakkında iyi bir prompt örneği oluştur. Sadece prompt örneğini ver, başka açıklama yapma.`;
+                // Prompt'u daha genel içerik üretmeye yönelik olarak güncelledik
+                const prompt = `Prompt mühendisliği prensibi olan '${currentPrincipleTitle}' prensibini kullanarak, '${topic}' konusunda kısa ve yaratıcı bir içerik örneği oluştur. Sadece içeriği ver, başka açıklama yapma.`;
 
                 try {
                     let chatHistory = [];
                     chatHistory.push({ role: "user", parts: [{ text: prompt }] });
                     const payload = { contents: chatHistory };
-                    const apiKey = "AIzaSyCEEywiObjmjA1ecwseMortdDKnt5Bwjrc"; // API Anahtarınız buraya eklendi
+                    const apiKey = ""; // API Anahtarınız buraya eklendi
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                     const response = await fetch(apiUrl, {
@@ -1570,7 +2009,7 @@
                     let chatHistory = [];
                     chatHistory.push({ role: "user", parts: [{ text: optimizationPrompt }] });
                     const payload = { contents: chatHistory };
-                    const apiKey = "AIzaSyCEEywiObjmjA1ecwseMortdDKnt5Bwjrc"; // API Anahtarınız buraya eklendi
+                    const apiKey = ""; // API Anahtarınız buraya eklendi
                     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
                     const response = await fetch(apiUrl, {
@@ -1599,6 +2038,423 @@
                     optimizePromptButton.disabled = false;
                     optimizeButtonText.textContent = 'Optimize Et';
                     optimizeSpinner.classList.add('hidden');
+                }
+            });
+
+            // Summarize Text Modal Logic (YENİ ÖZELLİK)
+            const summarizeTextModal = document.getElementById('summarizeTextModal');
+            const openSummarizeTextModalButton = document.getElementById('openSummarizeTextModal');
+            const closeSummarizeModalButton = document.getElementById('closeSummarizeModalButton');
+            const textToSummarizeInput = document.getElementById('textToSummarizeInput');
+            const summarizeTextButton = document.getElementById('summarizeTextButton');
+            const summarizedTextOutput = document.getElementById('summarizedTextOutput');
+            const summarizedText = document.getElementById('summarizedText');
+            const summarizeButtonText = document.getElementById('summarizeButtonText');
+            const summarizeSpinner = document.getElementById('summarizeSpinner');
+            const summarizeErrorMessage = document.getElementById('summarizeErrorMessage');
+
+            openSummarizeTextModalButton.addEventListener('click', () => {
+                textToSummarizeInput.value = ''; // Clear previous input
+                summarizedTextOutput.classList.add('hidden'); // Hide previous output
+                summarizeErrorMessage.classList.add('hidden'); // Hide previous error
+                summarizeTextButton.disabled = false; // Enable button
+                summarizeButtonText.textContent = 'Özetle';
+                summarizeSpinner.classList.add('hidden');
+                summarizeTextModal.style.display = 'flex'; // Show modal
+            });
+
+            closeSummarizeModalButton.addEventListener('click', () => {
+                summarizeTextModal.style.display = 'none'; // Hide modal
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target == summarizeTextModal) {
+                    summarizeTextModal.style.display = 'none'; // Hide modal when clicking outside
+                }
+            });
+
+            summarizeTextButton.addEventListener('click', async () => {
+                const text = textToSummarizeInput.value.trim();
+                if (!text) {
+                    summarizeErrorMessage.textContent = 'Lütfen özetlemek istediğiniz metni girin.';
+                    summarizeErrorMessage.classList.remove('hidden');
+                    return;
+                }
+
+                summarizeTextButton.disabled = true;
+                summarizeButtonText.textContent = 'Özetleniyor...';
+                summarizeSpinner.classList.remove('hidden');
+                summarizedTextOutput.classList.add('hidden');
+                summarizeErrorMessage.classList.add('hidden');
+
+                const summarizePrompt = `Bana verilen metni Türkçe olarak özetle. En fazla 3-4 cümle olsun. Özetlenen metni doğrudan ver, başka açıklama yapma. İşte metin: "${text}"`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: summarizePrompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const summarizedResult = result.candidates[0].content.parts[0].text;
+                        summarizedText.textContent = summarizedResult;
+                        summarizedTextOutput.classList.remove('hidden');
+                    } else {
+                        summarizeErrorMessage.textContent = 'Metin özetlenemedi. Lütfen tekrar deneyin.';
+                        summarizeErrorMessage.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error summarizing text:', error);
+                    summarizeErrorMessage.textContent = 'Bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
+                    summarizeErrorMessage.classList.remove('hidden');
+                } finally {
+                    summarizeTextButton.disabled = false;
+                    summarizeButtonText.textContent = 'Özetle';
+                    summarizeSpinner.classList.add('hidden');
+                }
+            });
+
+            // Yeni Özellik: Prompt Geliştirici Modalı Logic
+            const promptDeveloperModal = document.getElementById('promptDeveloperModal');
+            const openPromptDeveloperModalButton = document.getElementById('openPromptDeveloperModal');
+            const closePromptDeveloperModalButton = document.getElementById('closePromptDeveloperModalButton');
+            const promptIdeaInput = document.getElementById('promptIdeaInput');
+            const developPromptButton = document.getElementById('developPromptButton');
+            const developedPromptOutput = document.getElementById('developedPromptOutput');
+            const developedPromptText = document.getElementById('developedPromptText');
+            const developButtonText = document.getElementById('developButtonText');
+            const developSpinner = document.getElementById('developSpinner');
+            const developErrorMessage = document.getElementById('developErrorMessage');
+
+            openPromptDeveloperModalButton.addEventListener('click', () => {
+                promptIdeaInput.value = ''; // Clear previous input
+                developedPromptOutput.classList.add('hidden'); // Hide previous output
+                developErrorMessage.classList.add('hidden'); // Hide previous error
+                developPromptButton.disabled = false; // Enable button
+                developButtonText.textContent = 'Prompt Geliştir';
+                developSpinner.classList.add('hidden');
+                promptDeveloperModal.style.display = 'flex'; // Show modal
+            });
+
+            closePromptDeveloperModalButton.addEventListener('click', () => {
+                promptDeveloperModal.style.display = 'none'; // Hide modal
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target == promptDeveloperModal) {
+                    promptDeveloperModal.style.display = 'none'; // Hide modal when clicking outside
+                }
+            });
+
+            developPromptButton.addEventListener('click', async () => {
+                const idea = promptIdeaInput.value.trim();
+                if (!idea) {
+                    developErrorMessage.textContent = 'Lütfen bir fikir girin.';
+                    developErrorMessage.classList.remove('hidden');
+                    return;
+                }
+
+                developPromptButton.disabled = true;
+                developButtonText.textContent = 'Geliştiriliyor...';
+                developSpinner.classList.remove('hidden');
+                developedPromptOutput.classList.add('hidden');
+                developErrorMessage.classList.add('hidden');
+
+                const developPrompt = `Bana verilen basit bir fikri, yapay zeka için detaylı, açık ve etkili bir prompt'a dönüştür. Prompt'un içinde rol atama, bağlam sağlama, çıktı formatı belirtme gibi prompt mühendisliği prensiplerini kullan. Sadece geliştirilen prompt'u ver, başka açıklama yapma. İşte fikir: "${idea}"`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: developPrompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const developedResult = result.candidates[0].content.parts[0].text;
+                        developedPromptText.textContent = developedResult;
+                        developedPromptOutput.classList.remove('hidden');
+                    } else {
+                        developErrorMessage.textContent = 'Prompt geliştirilemedi. Lütfen tekrar deneyin.';
+                        developErrorMessage.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error developing prompt:', error);
+                    developErrorMessage.textContent = 'Bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
+                    developErrorMessage.classList.remove('hidden');
+                } finally {
+                    developPromptButton.disabled = false;
+                    developButtonText.textContent = 'Prompt Geliştir';
+                    developSpinner.classList.add('hidden');
+                }
+            });
+
+            // Yeni Özellik: Yaratıcı Yazı Oluşturucu Modalı Logic
+            const creativeWriterModal = document.getElementById('creativeWriterModal');
+            const openCreativeWriterModalButton = document.getElementById('openCreativeWriterModal');
+            const closeCreativeWriterModalButton = document.getElementById('closeCreativeWriterModalButton');
+            const creativeTopicInput = document.getElementById('creativeTopicInput');
+            const generateCreativeTextButton = document.getElementById('generateCreativeTextButton');
+            const creativeTextOutput = document.getElementById('creativeTextOutput');
+            const generatedCreativeText = document.getElementById('generatedCreativeText');
+            const creativeButtonText = document.getElementById('creativeButtonText');
+            const creativeSpinner = document.getElementById('creativeSpinner');
+            const creativeErrorMessage = document.getElementById('creativeErrorMessage');
+
+            openCreativeWriterModalButton.addEventListener('click', () => {
+                creativeTopicInput.value = ''; // Clear previous input
+                creativeTextOutput.classList.add('hidden'); // Hide previous output
+                creativeErrorMessage.classList.add('hidden'); // Hide previous error
+                generateCreativeTextButton.disabled = false; // Enable button
+                creativeButtonText.textContent = 'Yazı Oluştur';
+                creativeSpinner.classList.add('hidden');
+                creativeWriterModal.style.display = 'flex'; // Show modal
+            });
+
+            closeCreativeWriterModalButton.addEventListener('click', () => {
+                creativeWriterModal.style.display = 'none'; // Hide modal
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target == creativeWriterModal) {
+                    creativeWriterModal.style.display = 'none'; // Hide modal when clicking outside
+                }
+            });
+
+            generateCreativeTextButton.addEventListener('click', async () => {
+                const topic = creativeTopicInput.value.trim();
+                if (!topic) {
+                    creativeErrorMessage.textContent = 'Lütfen bir konu girin.';
+                    creativeErrorMessage.classList.remove('hidden');
+                    return;
+                }
+
+                generateCreativeTextButton.disabled = true;
+                creativeButtonText.textContent = 'Oluşturuluyor...';
+                creativeSpinner.classList.remove('hidden');
+                creativeTextOutput.classList.add('hidden');
+                creativeErrorMessage.classList.add('hidden');
+
+                const creativePrompt = `Bana verilen konu hakkında kısa (en fazla 50 kelime) ve yaratıcı bir metin yaz. Metin hayal gücünü zorlayan, ilgi çekici ve özgün olsun. Sadece metni ver, başka açıklama yapma. İşte konu: "${topic}"`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: creativePrompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const creativeResult = result.candidates[0].content.parts[0].text;
+                        generatedCreativeText.textContent = creativeResult;
+                        creativeTextOutput.classList.remove('hidden');
+                    } else {
+                        creativeErrorMessage.textContent = 'Yaratıcı metin oluşturulamadı. Lütfen tekrar deneyin.';
+                        creativeErrorMessage.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error generating creative text:', error);
+                    creativeErrorMessage.textContent = 'Bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
+                    creativeErrorMessage.classList.remove('hidden');
+                } finally {
+                    generateCreativeTextButton.disabled = false;
+                    creativeButtonText.textContent = 'Yazı Oluştur';
+                    creativeSpinner.classList.add('hidden');
+                }
+            });
+
+            // Yeni Özellik: Prompt Analiz & Puanlayıcı Modalı Logic
+            const promptAnalysisScorerModal = document.getElementById('promptAnalysisScorerModal');
+            const openPromptAnalysisScorerModalButton = document.getElementById('openPromptAnalysisScorerModal');
+            const closePromptAnalysisScorerModalButton = document.getElementById('closePromptAnalysisScorerModalButton');
+            const promptToAnalyzeInput = document.getElementById('promptToAnalyzeInput');
+            const analyzePromptButton = document.getElementById('analyzePromptButton');
+            const analyzedPromptOutput = document.getElementById('analyzedPromptOutput');
+            const analyzedPromptText = document.getElementById('analyzedPromptText');
+            const analyzeButtonText = document.getElementById('analyzeButtonText');
+            const analyzeSpinner = document.getElementById('analyzeSpinner');
+            const analyzeErrorMessage = document.getElementById('analyzeErrorMessage');
+
+            openPromptAnalysisScorerModalButton.addEventListener('click', () => {
+                promptToAnalyzeInput.value = ''; // Clear previous input
+                analyzedPromptOutput.classList.add('hidden'); // Hide previous output
+                analyzeErrorMessage.classList.add('hidden'); // Hide previous error
+                analyzePromptButton.disabled = false; // Enable button
+                analyzeButtonText.textContent = 'Analiz Et & Puanla';
+                analyzeSpinner.classList.add('hidden');
+                promptAnalysisScorerModal.style.display = 'flex'; // Show modal
+            });
+
+            closePromptAnalysisScorerModalButton.addEventListener('click', () => {
+                promptAnalysisScorerModal.style.display = 'none'; // Hide modal
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target == promptAnalysisScorerModal) {
+                    promptAnalysisScorerModal.style.display = 'none'; // Hide modal when clicking outside
+                }
+            });
+
+            analyzePromptButton.addEventListener('click', async () => {
+                const prompt = promptToAnalyzeInput.value.trim();
+                if (!prompt) {
+                    analyzeErrorMessage.textContent = 'Lütfen analiz etmek istediğiniz prompt\'u girin.';
+                    analyzeErrorMessage.classList.remove('hidden');
+                    return;
+                }
+
+                analyzePromptButton.disabled = true;
+                analyzeButtonText.textContent = 'Analiz Ediliyor...';
+                analyzeSpinner.classList.remove('hidden');
+                analyzedPromptOutput.classList.add('hidden');
+                analyzeErrorMessage.classList.add('hidden');
+
+                const analysisPrompt = `Sen bir prompt mühendisliği uzmanısın. Bana verilen prompt'u aşağıdaki kriterlere göre analiz et ve puanla (1-10 arası). Sonuçları şu formatta sun:\n\nPuan: [Puanınız]/10\n\nGüçlü Yönler:\n- [Madde 1]\n- [Madde 2]\n\nİyileştirme Alanları:\n- [Madde 1]\n- [Madde 2]\n\nÖneriler:\n- [Madde 1]\n- [Madde 2]\n\nİşte prompt: "${prompt}"`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: analysisPrompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const analysisResult = result.candidates[0].content.parts[0].text;
+                        analyzedPromptText.textContent = analysisResult;
+                        analyzedPromptOutput.classList.remove('hidden');
+                    } else {
+                        analyzeErrorMessage.textContent = 'Prompt analiz edilemedi veya puanlanamadı. Lütfen tekrar deneyin.';
+                        analyzeErrorMessage.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error analyzing prompt:', error);
+                    analyzeErrorMessage.textContent = 'Bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
+                    analyzeErrorMessage.classList.remove('hidden');
+                } finally {
+                    analyzePromptButton.disabled = false;
+                    analyzeButtonText.textContent = 'Analiz Et & Puanla';
+                    analyzeSpinner.classList.add('hidden');
+                }
+            });
+
+            // NEW FEATURE: Dynamic Quiz Question Generation
+            const generateNewQuizButton = document.getElementById('generateNewQuizButton');
+            const generateQuizButtonText = document.getElementById('generateQuizButtonText');
+            const generateQuizSpinner = document.getElementById('generateQuizSpinner');
+            const generateQuizErrorMessage = document.getElementById('generateQuizErrorMessage');
+
+            generateNewQuizButton.addEventListener('click', async () => {
+                generateNewQuizButton.disabled = true;
+                generateQuizButtonText.textContent = 'Oluşturuluyor...';
+                generateQuizSpinner.classList.remove('hidden');
+                generateQuizErrorMessage.classList.add('hidden');
+
+                const quizGenerationPrompt = `Prompt mühendisliği prensipleri hakkında 5 adet çoktan seçmeli quiz sorusu oluştur. Her sorunun 4 seçeneği ve doğru seçeneğin indeksi (0'dan başlayarak) olsun. Çıktıyı aşağıdaki JSON formatında ver, başka hiçbir metin veya açıklama ekleme:\n\n[\n  {\n    "question": "Soru metni burada.",\n    "options": ["Seçenek 1", "Seçenek 2", "Seçenek 3", "Seçenek 4"],\n    "correctAnswer": 0\n  }\n]`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: quizGenerationPrompt }] });
+                    const payload = {
+                        contents: chatHistory,
+                        generationConfig: {
+                            responseMimeType: "application/json",
+                            responseSchema: {
+                                type: "ARRAY",
+                                items: {
+                                    type: "OBJECT",
+                                    properties: {
+                                        "question": { "type": "STRING" },
+                                        "options": {
+                                            "type": "ARRAY",
+                                            "items": { "type": "STRING" }
+                                        },
+                                        "correctAnswer": { "type": "NUMBER" }
+                                    },
+                                    "required": ["question", "options", "correctAnswer"]
+                                }
+                            }
+                        }
+                    };
+                    const apiKey = ""; // API Anahtarınız buraya eklendi
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const newQuestionsJson = result.candidates[0].content.parts[0].text;
+                        const newQuestions = JSON.parse(newQuestionsJson);
+                        
+                        if (Array.isArray(newQuestions) && newQuestions.every(q => q.question && Array.isArray(q.options) && typeof q.correctAnswer === 'number')) {
+                            quizQuestions = newQuestions; // Update the quizQuestions array
+                            currentQuestionIndex = 0; // Reset quiz
+                            quizScore = 0;
+                            updateQuizContent(currentQuestionIndex);
+                            document.getElementById('quizScore').textContent = `Puan: ${quizScore}/${quizQuestions.length}`;
+                            showCustomMessage('Yeni quiz soruları başarıyla oluşturuldu!');
+                        } else {
+                            generateQuizErrorMessage.textContent = 'Oluşturulan quiz formatı hatalı. Lütfen tekrar deneyin.';
+                            generateQuizErrorMessage.classList.remove('hidden');
+                        }
+                    } else {
+                        generateQuizErrorMessage.textContent = 'Yeni quiz soruları oluşturulamadı. Lütfen tekrar deneyin.';
+                        generateQuizErrorMessage.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error generating new quiz:', error);
+                    generateQuizErrorMessage.textContent = 'Bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
+                    generateQuizErrorMessage.classList.remove('hidden');
+                } finally {
+                    generateNewQuizButton.disabled = false;
+                    generateQuizButtonText.textContent = 'Yeni Quiz Oluştur ✨';
+                    generateQuizSpinner.classList.add('hidden');
                 }
             });
         });
