@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Engineering: 10 Temel Prensip</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        /* Poppins font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f5fe;
+        }
+    
+        /* Card flip animation */
+        .principle-card {
+            perspective: 1000px;
+            height: 320px; /* Adjusted height for new button */
+            margin-bottom: 2rem;
+        }
+    
+        .card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+    
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+    
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(106, 13, 173, 0.15);
+        }
+    
+        .card-back {
+            transform: rotateY(180deg);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribute content and button */
+        }
+    
+        /* Quiz styles */
+        .quiz-option {
+            transition: all 0.3s ease;
+        }
+    
+        .quiz-option:hover {
+            transform: translateY(-2px);
+        }
+    
+        .quiz-option.selected {
+            border-color: #6A0DAD;
+            background-color: #F3E5F5;
+        }
+    
+        .quiz-option.correct {
+            border-color: #4CAF50;
+            background-color: #E8F5E9;
+        }
+    
+        .quiz-option.incorrect {
+            border-color: #F44336;
+            background-color: #FFEBEE;
+        }
+    
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+    
+        /* Tab navigation */
+        .tab-button {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+    
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #6A0DAD;
+            transition: width 0.3s ease;
+        }
+    
+        .tab-button.active::after {
+            width: 100%;
+        }
+    
+        .tab-content {
+            display: none;
+        }
+    
+        .tab-content.active {
+            display: block;
+        }
+    
+        /* Custom scrollbar */
+        .card-back::-webkit-scrollbar {
+            width: 8px;
+        }
+    
+        .card-back::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+    
+        .card-back::-webkit-scrollbar-thumb {
+            background: #6A0DAD;
+            border-radius: 10px;
+        }
+    
+        .card-back::-webkit-scrollbar-thumb:hover {
+            background: #5a0b93;
+        }
+    
+        /* Progress bar */
+        .progress-bar {
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+    
+        .progress {
+            height: 100%;
+            background-color: #6A0DAD;
+            transition: width 0.3s ease;
+        }
+    
+        /* Certificate styles */
+        .certificate {
+            background: linear-gradient(135deg, #fff 0%, #f9f5ff 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.1);
+        }
+    
+        .certificate-content {
+            position: relative;
+            z-index: 1;
+        }
+    
+        .certificate-border {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid rgba(106, 13, 173, 0.2);
+            border-radius: 6px;
+            pointer-events: none;
+        }
+    
+        .certificate-title {
+            font-family: 'Playfair Display', serif;
+            color: #6A0DAD;
+            letter-spacing: 1px;
+        }
+    
+        .certificate-name-input {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: #333;
+            border-bottom: 2px solid rgba(106, 13, 173, 0.3);
+            transition: all 0.3s ease;
+        }
+    
+        .certificate-name-input:focus {
+            border-color: rgba(106, 13, 173, 0.8);
+        }
+    
+        .certificate-seal {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            width: 90px;
+            height: 90px;
+            opacity: 0.8;
+        }
+    
+        /* References styles */
+        .reference-item {
+            position: relative;
+            padding-left: 20px;
+        }
+    
+        .reference-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background-color: #6A0DAD;
+            border-radius: 50%;
+        }
+    
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .principle-card {
+                height: 420px; /* Adjusted height for mobile */
+            }
+            
+            .certificate {
+                padding: 30px 20px;
+            }
+            
+            .certificate-seal {
+                width: 70px;
+                height: 70px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            /* Mobile menu styles */
+            .mobile-menu-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 5px;
+            }
+            
+            .mobile-menu {
+                display: flex;
+                width: max-content;
+            }
+            
+            .tab-button {
+                white-space: nowrap;
+                flex-shrink: 0;
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+        }
+    
+        @media (max-width: 640px) {
+            .principle-card {
+                height: 480px; /* Further adjusted height for smaller mobile */
+            }
+            
+            .certificate {
+                padding: 20px 15px;
+            }
+            
+            .certificate-border {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+            }
+        }
+    
+        /* Reference link styles */
+        .reference-link {
+            color: #6A0DAD;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+    
+        .reference-link:hover {
+            color: #4A0080;
+        }
+    
+        .reference-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #6A0DAD;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+    
+        .reference-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    
+        /* LinkedIn share button */
+        .linkedin-share-btn {
+            background-color: #0077B5;
+            transition: all 0.3s ease;
+        }
+    
+        .linkedin-share-btn:hover {
+            background-color: #005e8c;
+        }
+
+        /* Save certificate button */
+        .save-certificate-btn {
+            background-color: #4CAF50; /* Green color */
+            transition: all 0.3s ease;
+        }
+
+        .save-certificate-btn:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    
+        /* Enhanced footer styles */
+        .footer {
+            background: linear-gradient(to right, #4a0080, #6A0DAD);
+            color: white;
+            padding: 2.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #8e44ad, #9b59b6, #8e44ad);
+        }
+    
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+    
+        .footer-link {
+            color: #e0b0ff;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+        }
+    
+        .footer-link:hover {
+            color: white;
+        }
+    
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: #e0b0ff;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+    
+        .footer-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+    
+        .footer-divider {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* Solid purple background for certificate image area with "Tebrikler" text */
+        .congratulations-bg {
+            background-color: #6A0DAD; /* Solid purple */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px; /* Adjust height as needed */
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .congratulations-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem; /* Adjust size as needed */
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 30px;
+            border-radius: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <!--
+        *** ÖNEMLİ: SERTİFİKA GÖRSELİNİN LİNKEDİN'DE GÖRÜNMESİ İÇİN ***
+
+        Bu HTML sayfasını bir sunucuda barındırıyorsanız,
+        LinkedIn'in paylaşım önizlemesinde sertifika görselinizin görünmesini sağlamak için,
+        bu sayfanın `<head>` bölümüne aşağıdaki Open Graph meta etiketini eklemeniz GEREKİR.
+
+        'https://example.com/sertifika-gorseliniz.jpg' kısmını,
+        sertifika görselinizin doğrudan erişilebilir URL'si ile DEĞİŞTİRMELİSİNİZ.
+        Bu görsel, LinkedIn'in paylaşım penceresinde otomatik olarak önizlenecektir.
+
+        <meta property="og:image" content="https://example.com/sertifika-gorseliniz.jpg">
+        <meta property="og:title" content="Prompt Engineering Sertifikası">
+        <meta property="og:description" content="Prompt Engineering: 10 Temel Prensip eğitimini başarıyla tamamladım!">
+    -->
+
+</head>
+<body class="flex flex-col min-h-screen">
+    <header class="bg-purple-800 text-white py-6 shadow-md text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold mb-1">Prompt Engineering</h1>
+            <p class="text-xl md:text-2xl font-medium">10 Temel Prensip</p>
+        </div>
+    </header>
+
+    <nav class="bg-white shadow-md py-4 sticky top-0 z-10">
+        <div class="container mx-auto px-4">
+            <div class="mobile-menu-container">
+                <div class="mobile-menu flex justify-center space-x-4 md:space-x-6">
+                    <button class="tab-button active px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="intro">Giriş</button>
+                    <button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="principles">Prensipler</button>
+                    <button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="quiz">Quiz</button>
+                    <button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="references">Kaynakça</button>
+                    <button class="tab-button px-3 md:px-4 py-2 font-medium text-purple-900" data-tab="certificate">Sertifika</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        <section id="intro" class="tab-content active fade-in">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-900 mb-4">Prompt Engineering Nedir?</h2>
+                <p class="mb-4">Prompt mühendisliği, yapay zeka sistemlerinden en iyi sonuçları almak için girdileri (promptları) tasarlama ve optimize etme sanatıdır. Doğru prompt, AI'dan daha doğru, daha alakalı ve daha yararlı yanıtlar almanızı sağlar.</p>
+                <p class="mb-4">Bu interaktif rehber, etkili promptlar oluşturmanıza yardımcı olacak 10 temel prensibi öğretecek ve bu becerileri pekiştirmeniz için alıştırmalar sunacaktır.</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-8">
+                    <button id="startButton" class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full sm:w-auto">
+                        <span>Prensipleri Keşfet</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                    <button id="openPromptOptimizerModal" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center w-full sm:w-auto">
+                        <span>Prompt'unu Optimize Et ✨</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-purple-900">Neden Önemli?</h3>
+                    </div>
+                    <p>İyi tasarlanmış promptlar, AI'dan daha doğru, daha alakalı ve daha yararlı yanıtlar almanızı sağlar. Prompt mühendisliği, AI araçlarının potansiyelini en üst düzeye çıkarmanın anahtarıdır.</p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-purple-900">Bu Rehberde Ne Öğreneceksiniz?</h3>
+                    </div>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Açık ve net promptlar oluşturma</li>
+                        <li>Bağlam ve örneklerle AI'yı yönlendirme</li>
+                        <li>Çıktı formatını kontrol etme</li>
+                        <li>Karmaşık görevleri basit adımlara bölme</li>
+                        <li>Promptları test etme ve iyileştirme</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="principles" class="tab-content">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-purple-900 mb-4">10 Temel Prompt Engineering Prensibi</h2>
+                <p class="text-gray-700 mb-4">Her bir kartı tıklayarak detaylı bilgilere ulaşabilir ve ✨ kendi örneğinizi oluşturabilirsiniz.</p>
+                
+                <div class="progress-bar mb-4">
+                    <div id="principlesProgress" class="progress" style="width: 0%"></div>
+                </div>
+                <div class="flex justify-between text-sm text-gray-600 mb-6">
+                    <span id="viewedCounter">0/10 Görüntülendi</span>
+                    <button id="markAllViewed" class="text-purple-700 hover:text-purple-900 font-medium">Tümünü Görüntülendi İşaretle</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="principlesGrid">
+                </div>
+        </section>
+
+        <section id="quiz" class="tab-content">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-900 mb-4">Prompt Engineering Bilgi Testi</h2>
+                <p class="mb-6">Öğrendiklerinizi test edin! Aşağıdaki soruları cevaplayarak prompt mühendisliği konusundaki bilginizi ölçün.</p>
+                
+                <div class="progress-bar mb-4">
+                    <div id="quizProgress" class="progress" style="width: 0%"></div>
+                </div>
+                <div class="flex justify-between text-sm text-gray-600 mb-6">
+                    <span id="quizScore">Puan: 0/5</span>
+                    <span id="quizCounter">Soru 1/5</span>
+                </div>
+                
+                <div id="quizContainer">
+                    </div>
+                
+                <div class="mt-6 flex justify-between">
+                    <button id="prevQuestion" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                        Önceki
+                    </button>
+                    <button id="checkAnswer" class="bg-purple-700 hover:bg-purple-800 text-white font-medium py-2 px-4 rounded-lg">
+                        Cevabı Kontrol Et
+                    </button>
+                    <button id="nextQuestion" class="bg-purple-700 hover:bg-purple-800 text-white font-medium py-2 px-4 rounded-lg hidden">
+                        Sonraki
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline ml-1" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="references" class="tab-content">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-900 mb-6">Kaynakça</h2>
+                <p class="mb-6">Bu sitede kullanılan bilgiler aşağıdaki güvenilir ve açık kaynaklardan derlenmiştir:</p>
+                
+                <div class="space-y-6">
+                    <div class="reference-item">
+                        <h3 class="text-lg font-semibold text-purple-900 mb-2">
+                            <a href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" class="reference-link flex items-center">
+                                OpenAI Documentation
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </a>
+                        </h3>
+                        <p class="text-gray-700">OpenAI'ın resmi dokümantasyonu, prompt mühendisliği ve en iyi uygulamalar hakkında kapsamlı bilgiler içerir.</p>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <h3 class="text-lg font-semibold text-purple-900 mb-2">
+                            <a href="https://www.promptingguide.ai/" target="_blank" class="reference-link flex items-center">
+                                Prompt Engineering Guide (dair.ai)
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </a>
+                        </h3>
+                        <p class="text-gray-700">Dair.ai tarafından hazırlanan bu kapsamlı rehber, prompt mühendisliği tekniklerini ve stratejilerini detaylı olarak ele alır.</p>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <h3 class="text-lg font-semibold text-purple-900 mb-2">
+                            <a href="https://www.anthropic.com/index/prompting-guide" target="_blank" class="reference-link flex items-center">
+                                Anthropic Prompting Principles
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </a>
+                            </h3>
+                        <p class="text-gray-700">Anthropic'in AI sistemleriyle etkili iletişim için geliştirdiği prensipleri ve önerileri içerir.</p>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <h3 class="text-lg font-semibold text-purple-900 mb-2">
+                            <a href="https://ai.google.dev/docs/prompt_best_practices" target="_blank" class="reference-link flex items-center">
+                                Google Prompt Design Playbook
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </a>
+                        </h3>
+                        <p class="text-gray-700">Google'ın AI sistemleri için prompt tasarımı konusunda sunduğu en iyi uygulamalar ve stratejiler.</p>
+                    </div>
+                    
+                    <div class="reference-item">
+                        <h3 class="text-lg font-semibold text-purple-900 mb-2">
+                            <a href="https://learn.microsoft.com/en-us/microsoft-copilot/prompts" target="_blank" class="reference-link flex items-center">
+                                Microsoft Copilot Prompt Patterns
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                            </a>
+                        </h3>
+                        <p class="text-gray-700">Microsoft'un Copilot için geliştirdiği prompt kalıpları ve etkili kullanım stratejileri.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificate" class="tab-content">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-purple-900 mb-4">Başarı Sertifikası</h2>
+                <div id="certificateRequirements" class="mb-6">
+                    <p class="mb-4">Sertifikanızı almak için aşağıdaki işlemleri tamamlamanız gerekmektedir:</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li id="req-principles" class="text-red-600">
+                            <span class="font-medium">Tüm prensipleri inceleme</span> 
+                            <span class="ml-2">(0/10 tamamlandı)</span>
+                        </li>
+                        <li id="req-quiz" class="text-red-600">
+                            <span class="font-medium">Quiz'i tamamlama</span> 
+                            <span class="ml-2">(0/5 tamamlandı)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div id="certificateContainer" class="certificate mx-auto max-w-2xl mb-8">
+                    <div class="certificate-border"></div>
+                    
+                    <div class="certificate-content text-center relative">
+                        <div class="mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        
+                        <h3 class="certificate-title text-3xl font-bold mb-2">Başarı Sertifikası</h3>
+                        <p class="text-gray-600 mb-8">Bu belge</p>
+                        
+                        <div class="mb-8">
+                            <input type="text" id="certificateName" placeholder="Adınızı girin" class="certificate-name-input text-center text-2xl font-semibold w-full border-none focus:outline-none bg-transparent py-2">
+                        </div>
+                        
+                        <p class="mb-4 text-gray-700">adlı kişinin</p>
+                        <h4 class="text-xl font-bold text-purple-900 mb-6">Prompt Engineering: 10 Temel Prensip</h4>
+                        <p class="mb-8 text-gray-700">eğitimini başarıyla tamamladığını onaylar.</p>
+                        
+                        <div class="mb-8 p-4 bg-purple-700 rounded-lg border border-purple-800 relative overflow-hidden">
+                            <div class="congratulations-bg w-full h-40 flex items-center justify-center text-white text-5xl font-bold rounded-md">
+                                <span class="congratulations-text">Tebrikler</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-8 text-lg font-semibold text-gray-700">
+                            <p>Sertifika No: <span id="certificateNumber"></span></p>
+                            <p>Tarih: <span id="certificateDate"></span></p>
+                        </div>
+
+                        <div class="certificate-seal">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="50" cy="50" r="48" fill="none" stroke="#6A0DAD" stroke-width="2"></circle>
+                                <circle cx="50" cy="50" r="40" fill="none" stroke="#6A0DAD" stroke-width="1"></circle>
+                                </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <button id="shareLinkedIn" class="linkedin-share-btn hover:bg-blue-800 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        LinkedIn'de Paylaş
+                    </button>
+                    <button id="saveCertificateButton" class="save-certificate-btn hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg shadow-lg transition duration-300 transform hover:scale-105 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V11M13 3V9H21M13 3L21 11M17 17H7V15H17V17Z"/>
+                        </svg>
+                        Sertifikayı Kaydet
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container mx-auto px-4 footer-content">
+            <div class="max-w-4xl mx-auto text-center mb-8">
+                <p class="mb-6 text-lg">Bu sayfada yer alan bilgiler, kaynak gösterilen içeriklerden derlenmiştir. Sertifikanın yasal bir geçerliliği yoktur, sadece eğitim amacıyla ve kar gütmeden hazırlanmıştır.</p>
+                
+                <div class="inline-flex flex-wrap justify-center items-center mb-6">
+                    <span class="font-medium">Semanur Ayyıldız</span>
+                    <span class="footer-divider"></span>
+                    <span>Görsel İletişim Tasarımı ve Dijital Dönüşüm Uzmanı</span>
+                </div>
+                
+                <a href="https://www.linkedin.com/in/semayy/" target="_blank" class="footer-link inline-flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    linkedin.com/in/semayy
+                </a>
+            </div>
+            
+            <div class="border-t border-purple-400 border-opacity-30 pt-6">
+                <p class="text-center text-sm opacity-80">© 2025 Prompt Engineering Temel Seviye Eğitimi. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="generateExampleModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeModalButton">&times;</span>
+            <h3 class="text-xl font-bold text-purple-900 mb-4">✨ Kendi Örneğini Oluştur</h3>
+            <p class="mb-4">Hangi konuda örnek prompt oluşturmak istersiniz?</p>
+            <input type="text" id="exampleTopicInput" placeholder="Örn: Yemek tarifi, Pazarlama stratejisi..."
+                   class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <button id="generateExampleButton"
+                    class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-full">
+                <span id="generateButtonText">Oluştur</span>
+                <svg id="generateSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </button>
+            <div id="generatedExampleOutput" class="mt-4 p-4 bg-gray-100 rounded-lg border border-gray-200 hidden">
+                <p class="font-medium text-purple-700 mb-2">Oluşturulan Örnek:</p>
+                <p id="generatedExampleText" class="text-gray-800 whitespace-pre-wrap"></p>
+            </div>
+            <p id="generateErrorMessage" class="text-red-500 text-sm mt-2 hidden"></p>
+        </div>
+    </div>
+
+    <div id="promptOptimizerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeOptimizerModalButton">&times;</span>
+            <h3 class="text-xl font-bold text-blue-800 mb-4">Prompt'unu Optimize Et ✨</h3>
+            <p class="mb-4">Yazdığınız prompt'u girin, yapay zeka size iyileştirme önerileri sunsun.</p>
+            <textarea id="promptToOptimizeInput" 
+                      placeholder="Örn: Bana bir hikaye yaz." 
+                      class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                      rows="6"></textarea>
+            <button id="optimizePromptButton"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-full">
+                <span id="optimizeButtonText">Optimize Et</span>
+                <svg id="optimizeSpinner" class="animate-spin h-5 w-5 text-white ml-2 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </button>
+            <div id="optimizedPromptOutput" class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200 hidden">
+                <p class="font-medium text-blue-700 mb-2">Optimizasyon Önerileri:</p>
+                <p id="optimizedPromptText" class="text-gray-800 whitespace-pre-wrap"></p>
+            </div>
+            <p id="optimizeErrorMessage" class="text-red-500 text-sm mt-2 hidden"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Progress tracking
+            let progress = {
+                principles: new Set(),
+                quizCompleted: 0
+            };
+            
+            // Tab Navigation
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Check certificate eligibility when visiting certificate tab
+                    if (tabId === 'certificate') {
+                        checkCertificateEligibility();
+                    }
+                    
+                    // Scroll the active tab into view in mobile menu
+                    if (window.innerWidth <= 768) {
+                        button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    }
+                });
+            });
+            
+            // Start button redirects to principles tab
+            document.getElementById('startButton').addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                document.querySelector('[data-tab="principles"]').classList.add('active');
+                document.getElementById('principles').classList.add('active');
+                
+                // Scroll the principles tab into view in mobile menu
+                if (window.innerWidth <= 768) {
+                    document.querySelector('[data-tab="principles"]').scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            });
+            
+            // Principles Cards
+            const principles = [
+                {
+                    number: 1,
+                    title: "Açıklık ve Netlik",
+                    description: "Promptlarınız açık, net ve spesifik olmalıdır. Belirsizlikten kaçının ve tam olarak ne istediğinizi belirtin.",
+                    goodExample: "2023 yılında Türkiye'de yaşanan en önemli 3 ekonomik gelişmeyi, her biri için tarihler ve temel istatistikler ile birlikte açıklayın.",
+                    badExample: "Türkiye ekonomisi hakkında bilgi ver."
+                },
+                {
+                    number: 2,
+                    title: "Bağlam Sağlama",
+                    description: "AI'ya yeterli bağlam sağlayın. Arka plan bilgisi, amaç ve hedef kitle gibi detaylar daha alakalı yanıtlar almanızı sağlar.",
+                    goodExample: "Lise öğrencilerine yönelik, küresel ısınmanın temel nedenleri ve sonuçlarını açıklayan 5 dakikalık bir sunum metni hazırla.",
+                    badExample: "Küresel ısınma hakkında bir metin yaz."
+                },
+                {
+                    number: 3,
+                    title: "Örnekler Verme",
+                    description: "İstediğiniz çıktı formatını veya stilini göstermek için örnekler verin. Bu, AI'nın beklentilerinizi daha iyi anlamasını sağlar.",
+                    goodExample: "Aşağıdaki formatta 3 farklı kahve tarifi ver: \n\nTarif Adı: [İsim]\nZorluk: [Kolay/Orta/Zor]\nMalzemeler: [Liste]\nHazırlanışı: [Adımlar]",
+                    badExample: "Bana kahve tarifleri ver."
+                },
+                {
+                    number: 4,
+                    title: "Rol Atama",
+                    description: "AI'ya belirli bir rol verin. Bu, yanıtların belirli bir uzmanlık veya bakış açısıyla şekillenmesini sağlar.",
+                    goodExample: "Bir pazarlama uzmanı olarak, küçük bir kafe için sosyal medya stratejisi önerileri sun.",
+                    badExample: "Kafe için sosyal medya fikirleri ver."
+                },
+                {
+                    number: 5,
+                    title: "Çıktı Formatını Belirtme",
+                    description: "İstediğiniz yanıt formatını açıkça belirtin. Bu, bilgilerin istediğiniz şekilde düzenlenmesini sağlar.",
+                    goodExample: "Sağlıklı beslenme hakkında 5 ipucu ver. Her ipucu için bir başlık ve 2-3 cümlelik açıklama kullan. Sonunda tüm ipuçlarını özetleyen bir paragraf ekle.",
+                    badExample: "Sağlıklı beslenme ipuçları ver."
+                },
+                {
+                    number: 6,
+                    title: "Adım Adım Talimatlar",
+                    description: "Karmaşık görevleri basit adımlara bölün. Bu, AI'nın her adımı sırayla takip etmesini ve daha doğru sonuçlar üretmesini sağlar.",
+                    goodExample: "Bir iş planı özeti hazırla: 1) Önce ürünü kısaca tanımla, 2) Hedef pazarı belirle, 3) Temel rekabet avantajlarını listele, 4) İlk yıl için gelir tahminini hesapla.",
+                    badExample: "Bana bir iş planı hazırla."
+                },
+                {
+                    number: 7,
+                    title: "Kısıtlamalar Belirtme",
+                    description: "Yanıtın uzunluğu, tonu, kullanılacak veya kaçınılacak belirli kelimeler gibi kısıtlamaları belirtin.",
+                    goodExample: "300 kelimeyi geçmeyecek şekilde, teknik jargon kullanmadan ve pozitif bir tonda, yeni başlayanlar için yoga faydalarını anlat.",
+                    badExample: "Yoga faydalarını anlat."
+                },
+                {
+                    number: 8,
+                    title: "Çoklu Perspektif İsteme",
+                    description: "Farklı bakış açıları veya yaklaşımlar isteyin. Bu, daha kapsamlı ve dengeli yanıtlar almanızı sağlar.",
+                    goodExample: "Uzaktan çalışmanın avantajları ve dezavantajlarını hem işveren hem de çalışan perspektifinden analiz et.",
+                    badExample: "Uzaktan çalışma hakkında ne düşünüyorsun?"
+                },
+                {
+                    number: 9,
+                    title: "İteratif İyileştirme",
+                    description: "İlk yanıtı alın ve sonra spesifik iyileştirmeler isteyin. Bu iteratif süreç, yanıtı adım adım mükemmelleştirmenizi sağlar.",
+                    goodExample: "Bu metni daha ikna edici yap. Özellikle giriş paragrafını güçlendir ve sonuca bir çağrı eylemi ekle.",
+                    badExample: "Bu metni daha iyi yap."
+                },
+                {
+                    number: 10,
+                    title: "Geri Bildirim Verme",
+                    description: "AI'ya yanıtları hakkında geri bildirim verin. Bu, gelecekteki yanıtların daha iyi hizalanmasını sağlar.",
+                    goodExample: "Bu yanıt çok teknik oldu. Lütfen aynı bilgiyi 10 yaşındaki bir çocuğun anlayabileceği şekilde yeniden açıkla.",
+                    badExample: "Bunu anlamadım, tekrar dene."
+                }
+            ];
+            
+            // Create all principle cards at once
+            function createPrincipleCards() {
+                const principlesGrid = document.getElementById('principlesGrid');
+                principlesGrid.innerHTML = '';
+                
+                principles.forEach((principle, index) => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'principle-card';
+                    cardElement.dataset.index = index;
+                    cardElement.innerHTML = `
+                        <div class="card">
+                            <div class="card-front bg-white p-6 flex flex-col justify-center items-center">
+                                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                                    <span class="text-2xl font-bold text-purple-700">${principle.number}</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-purple-900 mb-2">${principle.title}</h3>
+                                <p class="text-center text-gray-600">Detaylar için kartı tıklayın</p>
+                            </div>
+                            <div class="card-back bg-white p-6">
+                                <div>
+                                    <h3 class="text-xl font-bold text-purple-900 mb-4">${principle.number}. ${principle.title}</h3>
+                                    <p class="mb-4">${principle.description}</p>
+                                    
+                                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                                        <p class="font-medium text-green-700">İyi Örnek:</p>
+                                        <p class="text-gray-700 whitespace-pre-wrap">"${principle.goodExample}"</p>
+                                    </div>
+                                    
+                                    <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+                                        <p class="font-medium text-red-700">Kötü Örnek:</p>
+                                        <p class="text-gray-700 whitespace-pre-wrap">"${principle.badExample}"</p>
+                                    </div>
+                                </div>
+                                <div class="mt-auto pt-4 border-t border-gray-200">
+                                    <button class="generate-custom-example-btn bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105 w-full flex items-center justify-center"
+                                            data-principle-title="${principle.title}" data-principle-description="${principle.description}">
+                                        ✨ Kendi Örneğini Oluştur
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    principlesGrid.appendChild(cardElement);
+                });
+                
+                // Initialize card flip for all cards
+                initializeCardFlip();
+            }
+            
+            // Initialize card flip functionality for all cards
+            function initializeCardFlip() {
+                const cards = document.querySelectorAll('.principle-card .card');
+                cards.forEach(card => {
+                    card.addEventListener('click', function(event) {
+                        // Prevent flipping if the generate button is clicked
+                        if (event.target.closest('.generate-custom-example-btn')) {
+                            return;
+                        }
+                        this.classList.toggle('flipped');
+                        
+                        // Mark card as viewed when flipped
+                        const cardIndex = parseInt(this.parentElement.dataset.index);
+                        if (!progress.principles.has(cardIndex)) {
+                            progress.principles.add(cardIndex);
+                            updatePrinciplesProgress();
+                        }
+                    });
+                });
+            }
+            
+            // Update principles progress
+            function updatePrinciplesProgress() {
+                const progressPercentage = (progress.principles.size / principles.length) * 100;
+                document.getElementById('principlesProgress').style.width = `${progressPercentage}%`;
+                document.getElementById('viewedCounter').textContent = `${progress.principles.size}/${principles.length} Görüntülendi`;
+                
+                // Update certificate requirements
+                updateCertificateRequirements();
+            }
+            
+            // Mark all principles as viewed
+            document.getElementById('markAllViewed').addEventListener('click', function() {
+                for (let i = 0; i < principles.length; i++) {
+                    progress.principles.add(i);
+                }
+                updatePrinciplesProgress();
+            });
+            
+            // Create all principle cards on page load
+            createPrincipleCards();
+            
+            // Quiz functionality
+            const quizQuestions = [
+                {
+                    question: "Aşağıdakilerden hangisi etkili bir prompt'un özelliği değildir?",
+                    options: [
+                        "Açık ve net olması",
+                        "Mümkün olduğunca kısa ve öz olması",
+                        "Belirsiz ve genel ifadeler içermesi",
+                        "Spesifik talimatlar içermesi"
+                    ],
+                    correctAnswer: 2
+                },
+                {
+                    question: "Prompt mühendisliğinde 'rol atama' ne anlama gelir?",
+                    options: [
+                        "AI'ya belirli bir karakter veya uzmanlık rolü vermek",
+                        "Kullanıcının kendi rolünü tanımlaması",
+                        "Prompt'un hangi kategoriye ait olduğunu belirtmek",
+                        "AI'nın yanıtını belirli bir kişiye yönlendirmek"
+                    ],
+                    correctAnswer: 0
+                },
+                {
+                    question: "Aşağıdakilerden hangisi iyi bir prompt örneğidir?",
+                    options: [
+                        "Bana bir makale yaz.",
+                        "Sağlık hakkında bilgi ver.",
+                        "Bir şeyler anlat.",
+                        "Bir pazarlama uzmanı olarak, e-ticaret sitesi için 5 SEO stratejisi öner ve her birini 2-3 cümleyle açıkla."
+                    ],
+                    correctAnswer: 3
+                },
+                {
+                    question: "Prompt'larda bağlam sağlamanın amacı nedir?",
+                    options: [
+                        "Sadece yanıtı uzatmak",
+                        "AI'nın daha alakalı ve hedefli yanıtlar vermesini sağlamak",
+                        "Teknik terimler kullanmaktan kaçınmak",
+                        "Prompt'u daha kısa tutmak"
+                    ],
+                    correctAnswer: 1
+                },
+                {
+                    question: "İteratif iyileştirme prensibi neyi ifade eder?",
+                    options: [
+                        "Aynı prompt'u tekrar tekrar göndermek",
+                        "Her seferinde tamamen farklı promptlar kullanmak",
+                        "İlk yanıtı alıp sonra spesifik iyileştirmeler istemek",
+                        "AI'nın kendi kendine yanıtlarını düzeltmesini beklemek"
+                    ],
+                    correctAnswer: 2
+                }
+            ];
+            
+            let currentQuestionIndex = 0;
+            let quizScore = 0;
+            let questionAnswered = false;
+            
+            function updateQuizContent(index) {
+                const question = quizQuestions[index];
+                const quizContainer = document.getElementById('quizContainer');
+                
+                quizContainer.innerHTML = `
+                    <div class="quiz-question">
+                        <h3 class="text-lg font-semibold text-purple-900 mb-3">${index + 1}. ${question.question}</h3>
+                        <div class="space-y-3">
+                            ${question.options.map((option, i) => `
+                                <div class="quiz-option border border-gray-300 rounded-lg p-4 hover:border-purple-500">
+                                    <label class="flex items-center cursor-pointer">
+                                        <input type="radio" name="q${index + 1}" value="${i}" class="hidden">
+                                        <span class="w-5 h-5 inline-block border border-gray-400 rounded-full mr-3 flex-shrink-0"></span>
+                                        <span>${option}</span>
+                                    </label>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                // Add event listeners to quiz options
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        if (!questionAnswered) {
+                            document.querySelectorAll('.quiz-option').forEach(opt => {
+                                opt.classList.remove('selected');
+                                opt.querySelector('input').checked = false;
+                            });
+                            
+                            this.classList.add('selected');
+                            this.querySelector('input').checked = true;
+                        }
+                    });
+                });
+                
+                // Update counter and progress
+                document.getElementById('quizCounter').textContent = `Soru ${index + 1}/${quizQuestions.length}`;
+                const progressPercentage = ((index) / quizQuestions.length) * 100;
+                document.getElementById('quizProgress').style.width = `${progressPercentage}%`;
+                
+                // Update button states
+                document.getElementById('prevQuestion').disabled = index === 0;
+                document.getElementById('checkAnswer').style.display = 'block';
+                document.getElementById('nextQuestion').style.display = 'none';
+                
+                // Reset question state
+                questionAnswered = false;
+            }
+            
+            // Initialize first question
+            updateQuizContent(currentQuestionIndex);
+            
+            // Check answer button
+            document.getElementById('checkAnswer').addEventListener('click', function() {
+                const selectedOption = document.querySelector('.quiz-option.selected');
+                
+                if (!selectedOption && !questionAnswered) {
+                    // Use a custom message box instead of alert
+                    showCustomMessage('Lütfen bir cevap seçin!');
+                    return;
+                }
+                
+                if (!questionAnswered) {
+                    questionAnswered = true;
+                    
+                    const selectedIndex = parseInt(selectedOption.querySelector('input').value);
+                    const correctIndex = quizQuestions[currentQuestionIndex].correctAnswer;
+                    
+                    if (selectedIndex === correctIndex) {
+                        selectedOption.classList.add('correct');
+                        quizScore++;
+                    } else {
+                        selectedOption.classList.add('incorrect');
+                        document.querySelectorAll('.quiz-option')[correctIndex].classList.add('correct');
+                    }
+                    
+                    // Update score
+                    document.getElementById('quizScore').textContent = `Puan: ${quizScore}/${quizQuestions.length}`;
+                    
+                    // Show next button
+                    this.style.display = 'none';
+                    
+                    if (currentQuestionIndex < quizQuestions.length - 1) {
+                        document.getElementById('nextQuestion').style.display = 'block';
+                    } else {
+                        // If last question, show a completion message or redirect
+                        document.getElementById('nextQuestion').textContent = 'Kaynakçaya Geç';
+                        document.getElementById('nextQuestion').style.display = 'block';
+                        
+                        // Update progress for certificate
+                        progress.quizCompleted = quizScore;
+                        updateCertificateRequirements();
+                    }
+                }
+            });
+            
+            // Next question button
+            document.getElementById('nextQuestion').addEventListener('click', function() {
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    currentQuestionIndex++;
+                    updateQuizContent(currentQuestionIndex);
+                } else {
+                    // Go to references tab when finished with all questions
+                    document.querySelector('[data-tab="references"]').click();
+                }
+            });
+            
+            // Previous question button
+            document.getElementById('prevQuestion').addEventListener('click', function() {
+                if (currentQuestionIndex > 0) {
+                    currentQuestionIndex--;
+                    updateQuizContent(currentQuestionIndex);
+                }
+            });
+            
+            // Update certificate requirements
+            function updateCertificateRequirements() {
+                const principlesReq = document.getElementById('req-principles');
+                const quizReq = document.getElementById('req-quiz');
+                const saveButton = document.getElementById('saveCertificateButton'); // Get the save button
+                
+                // Update principles requirement
+                if (progress.principles.size === principles.length) {
+                    principlesReq.classList.remove('text-red-600');
+                    principlesReq.classList.add('text-green-600');
+                    principlesReq.querySelector('span:last-child').textContent = `(${progress.principles.size}/${principles.length} tamamlandı)`;
+                } else {
+                    principlesReq.classList.remove('text-green-600');
+                    principlesReq.classList.add('text-red-600');
+                    principlesReq.querySelector('span:last-child').textContent = `(${progress.principles.size}/${principles.length} tamamlandı)`;
+                }
+                
+                // Update quiz requirement
+                if (progress.quizCompleted >= 3) { // Pass with at least 3 correct answers
+                    quizReq.classList.remove('text-red-600');
+                    quizReq.classList.add('text-green-600');
+                    quizReq.querySelector('span:last-child').textContent = `(${progress.quizCompleted}/${quizQuestions.length} tamamlandı)`;
+                } else {
+                    quizReq.classList.remove('text-green-600');
+                    quizReq.classList.add('text-red-600');
+                    quizReq.querySelector('span:last-child').textContent = `(${progress.quizCompleted}/${quizQuestions.length} tamamlandı)`;
+                }
+                
+                // Check if all requirements are met
+                checkCertificateEligibility();
+            }
+            
+            // Certificate Number and Date Generation
+            function generateCertificateDetails() {
+                // Generate a random 6-digit number
+                const certNumber = Math.floor(100000 + Math.random() * 900000);
+                document.getElementById('certificateNumber').textContent = certNumber;
+
+                // Get current date and format it
+                const today = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                document.getElementById('certificateDate').textContent = today.toLocaleDateString('tr-TR', options);
+            }
+
+            // Call on page load to generate initial details
+            generateCertificateDetails();
+
+            // Check if user is eligible for certificate
+            function checkCertificateEligibility() {
+                const shareButton = document.getElementById('shareLinkedIn');
+                const saveButton = document.getElementById('saveCertificateButton'); // Get the save button
+                const allRequirementsMet = 
+                    progress.principles.size === principles.length && 
+                    progress.quizCompleted >= 3;
+                
+                if (allRequirementsMet) {
+                    shareButton.disabled = false;
+                    saveButton.disabled = false; // Enable save button
+                    document.getElementById('certificateRequirements').innerHTML = `
+                        <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-4">
+                            <p class="font-medium text-green-700">Tebrikler! Tüm gereksinimleri tamamladınız.</p>
+                            <p class="text-gray-700">Adınızı girin ve sertifikanızı LinkedIn'de paylaşabilir veya kaydedebilirsiniz.</p>
+                        </div>
+                    `;
+                } else {
+                    shareButton.disabled = true;
+                    saveButton.disabled = true; // Disable save button
+                }
+            }
+            
+            // LinkedIn share button
+            document.getElementById('shareLinkedIn').addEventListener('click', function() {
+                const name = document.getElementById('certificateName').value.trim();
+                
+                if (!name) {
+                    showCustomMessage('Lütfen sertifika için adınızı girin!');
+                    return;
+                }
+                
+                // Create LinkedIn share URL
+                const shareText = encodeURIComponent(`${name} olarak Prompt Engineering: 10 Temel Prensip eğitimini tamamladım! #PromptEngineering #YapayAITr #AI`);
+                const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}&title=${shareText}`;
+                
+                // Open LinkedIn share dialog in a new window
+                window.open(shareUrl, '_blank', 'width=600,height=600');
+            });
+
+            // Save Certificate Button
+            document.getElementById('saveCertificateButton').addEventListener('click', async function() {
+                const name = document.getElementById('certificateName').value.trim();
+                if (!name) {
+                    showCustomMessage('Lütfen sertifika için adınızı girin!');
+                    return;
+                }
+
+                // Temporarily hide elements that should not be part of the screenshot
+                const shareButton = document.getElementById('shareLinkedIn');
+                const saveButton = document.getElementById('saveCertificateButton');
+                const certificateRequirements = document.getElementById('certificateRequirements');
+                
+                shareButton.style.display = 'none';
+                saveButton.style.display = 'none';
+                certificateRequirements.style.display = 'none';
+
+                const certificateSection = document.getElementById('certificateContainer'); // Capture only the certificate content
+                const footerElement = document.querySelector('.footer');
+
+                // Create a temporary container to render both certificate and footer
+                const tempContainer = document.createElement('div');
+                tempContainer.style.position = 'absolute'; // Position off-screen
+                tempContainer.style.left = '-9999px';
+                tempContainer.style.top = '-9999px';
+                tempContainer.style.width = certificateSection.offsetWidth + 'px'; // Match width of certificate section
+                tempContainer.style.backgroundColor = '#f8f5fe'; // Match body background
+                tempContainer.style.padding = '20px'; // Add some padding around the content
+                tempContainer.style.display = 'flex'; // Use flexbox for vertical alignment
+                tempContainer.style.flexDirection = 'column';
+                tempContainer.style.alignItems = 'center'; // Center horizontally
+
+                // Clone the certificate container's content
+                const certificateContentToClone = document.getElementById('certificateContainer').cloneNode(true);
+                tempContainer.appendChild(certificateContentToClone);
+
+                // Add a visual separator if desired, or just space
+                const separator = document.createElement('div');
+                separator.style.height = '40px'; // Space between certificate and footer
+                tempContainer.appendChild(separator);
+
+                // Clone the footer content
+                const clonedFooterContent = footerElement.cloneNode(true);
+                clonedFooterContent.style.position = 'static'; // Ensure it flows normally
+                clonedFooterContent.style.width = '100%'; // Ensure it takes full width
+                clonedFooterContent.style.boxShadow = 'none'; // Remove shadow if it causes issues
+                clonedFooterContent.style.borderRadius = '0'; // Remove border-radius if it causes issues
+                tempContainer.appendChild(clonedFooterContent);
+
+                document.body.appendChild(tempContainer);
+
+                try {
+                    const canvas = await html2canvas(tempContainer, {
+                        scale: 2, // Increase scale for better quality (e.g., 2 or 3)
+                        useCORS: true, // Important if images/fonts are from different origins
+                        logging: false, // Disable logging for cleaner console
+                        backgroundColor: '#f8f5fe' // Ensure consistent background
+                    });
+
+                    const imageData = canvas.toDataURL('image/png');
+                    const link = document.createElement('a');
+                    link.href = imageData;
+                    link.download = `Prompt_Engineering_Sertifikasi_${name.replace(/\s+/g, '_')}.png`; // Dynamic filename
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    showCustomMessage('Sertifikanız başarıyla kaydedildi!');
+                } catch (error) {
+                    console.error('Sertifika kaydedilirken hata oluştu:', error);
+                    showCustomMessage('Sertifika kaydedilirken bir hata oluştu.');
+                } finally {
+                    document.body.removeChild(tempContainer); // Always remove temporary container
+                    // Restore original display styles
+                    shareButton.style.display = '';
+                    saveButton.style.display = '';
+                    certificateRequirements.style.display = '';
+                }
+            });
+            
+            // Make sure the active tab is visible in the mobile menu on page load
+            if (window.innerWidth <= 768) {
+                const activeTab = document.querySelector('.tab-button.active');
+                if (activeTab) {
+                    activeTab.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+                }
+            }
+            
+            // Handle window resize for mobile menu
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    const activeTab = document.querySelector('.tab-button.active');
+                    if (activeTab) {
+                        activeTab.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+                    }
+                }
+            });
+
+            // Custom Message Box (instead of alert/confirm)
+            function showCustomMessage(message) {
+                const messageBox = document.createElement('div');
+                messageBox.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                    z-index: 2000;
+                    text-align: center;
+                    font-family: 'Poppins', sans-serif;
+                    max-width: 300px;
+                    width: 90%;
+                `;
+                messageBox.innerHTML = `
+                    <p class="text-lg font-semibold text-gray-800 mb-4">${message}</p>
+                    <button class="bg-purple-700 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded-lg" onclick="this.parentElement.remove()">Tamam</button>
+                `;
+                document.body.appendChild(messageBox);
+            }
+
+            // Gemini API Integration - Custom Example Generation
+            const generateExampleModal = document.getElementById('generateExampleModal');
+            const closeModalButton = document.getElementById('closeModalButton');
+            const exampleTopicInput = document.getElementById('exampleTopicInput');
+            const generateExampleButton = document.getElementById('generateExampleButton');
+            const generatedExampleOutput = document.getElementById('generatedExampleOutput');
+            const generatedExampleText = document.getElementById('generatedExampleText');
+            const generateButtonText = document.getElementById('generateButtonText');
+            const generateSpinner = document.getElementById('generateSpinner');
+            const generateErrorMessage = document.getElementById('generateErrorMessage');
+
+            let currentPrincipleTitle = '';
+            let currentPrincipleDescription = '';
+
+            document.querySelectorAll('.generate-custom-example-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    currentPrincipleTitle = this.dataset.principleTitle;
+                    currentPrincipleDescription = this.dataset.principleDescription;
+                    exampleTopicInput.value = ''; // Clear previous input
+                    generatedExampleOutput.classList.add('hidden'); // Hide previous output
+                    generateErrorMessage.classList.add('hidden'); // Hide previous error
+                    generateExampleButton.disabled = false; // Enable button
+                    generateButtonText.textContent = 'Oluştur';
+                    generateSpinner.classList.add('hidden');
+                    generateExampleModal.style.display = 'flex'; // Show modal
+                });
+            });
+
+            closeModalButton.addEventListener('click', () => {
+                generateExampleModal.style.display = 'none'; // Hide modal
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target == generateExampleModal) {
+                    generateExampleModal.style.display = 'none'; // Hide modal when clicking outside
+                }
+            });
+
+            generateExampleButton.addEventListener('click', async () => {
+                const topic = exampleTopicInput.value.trim();
+                if (!topic) {
+                    generateErrorMessage.textContent = 'Lütfen bir konu girin.';
+                    generateErrorMessage.classList.remove('hidden');
+                    return;
+                }
+
+                generateExampleButton.disabled = true;
+                generateButtonText.textContent = 'Oluşturuluyor...';
+                generateSpinner.classList.remove('hidden');
+                generatedExampleOutput.classList.add('hidden');
+                generateErrorMessage.classList.add('hidden');
+
+                const prompt = `Bir prompt mühendisliği prensibi olan '${currentPrincipleTitle}' prensibini kullanarak, '${topic}' hakkında iyi bir prompt örneği oluştur. Sadece prompt örneğini ver, başka açıklama yapma.`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        generatedExampleText.textContent = text;
+                        generatedExampleOutput.classList.remove('hidden');
+                    } else {
+                        generateErrorMessage.textContent = 'Örnek oluşturulamadı. Lütfen tekrar deneyin.';
+                        generateErrorMessage.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error generating example:', error);
+                    generateErrorMessage.textContent = 'Bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
+                    generateErrorMessage.classList.remove('hidden');
+                } finally {
+                    generateExampleButton.disabled = false;
+                    generateButtonText.textContent = 'Oluştur';
+                    generateSpinner.classList.add('hidden');
+                }
+            });
+
+            // Prompt Optimizer Modal Logic
+            const promptOptimizerModal = document.getElementById('promptOptimizerModal');
+            const openPromptOptimizerModalButton = document.getElementById('openPromptOptimizerModal');
+            const closeOptimizerModalButton = document.getElementById('closeOptimizerModalButton');
+            const promptToOptimizeInput = document.getElementById('promptToOptimizeInput');
+            const optimizePromptButton = document.getElementById('optimizePromptButton');
+            const optimizedPromptOutput = document.getElementById('optimizedPromptOutput');
+            const optimizedPromptText = document.getElementById('optimizedPromptText');
+            const optimizeButtonText = document.getElementById('optimizeButtonText');
+            const optimizeSpinner = document.getElementById('optimizeSpinner');
+            const optimizeErrorMessage = document.getElementById('optimizeErrorMessage');
+
+            openPromptOptimizerModalButton.addEventListener('click', () => {
+                promptToOptimizeInput.value = ''; // Clear previous input
+                optimizedPromptOutput.classList.add('hidden'); // Hide previous output
+                optimizeErrorMessage.classList.add('hidden'); // Hide previous error
+                optimizePromptButton.disabled = false; // Enable button
+                optimizeButtonText.textContent = 'Optimize Et';
+                optimizeSpinner.classList.add('hidden');
+                promptOptimizerModal.style.display = 'flex'; // Show modal
+            });
+
+            closeOptimizerModalButton.addEventListener('click', () => {
+                promptOptimizerModal.style.display = 'none'; // Hide modal
+            });
+
+            window.addEventListener('click', (event) => {
+                if (event.target == promptOptimizerModal) {
+                    promptOptimizerModal.style.display = 'none'; // Hide modal when clicking outside
+                }
+            });
+
+            optimizePromptButton.addEventListener('click', async () => {
+                const prompt = promptToOptimizeInput.value.trim();
+                if (!prompt) {
+                    optimizeErrorMessage.textContent = 'Lütfen optimize etmek istediğiniz prompt\'u girin.';
+                    optimizeErrorMessage.classList.remove('hidden');
+                    return;
+                }
+
+                optimizePromptButton.disabled = true;
+                optimizeButtonText.textContent = 'Optimize Ediliyor...';
+                optimizeSpinner.classList.remove('hidden');
+                optimizedPromptOutput.classList.add('hidden');
+                optimizeErrorMessage.classList.add('hidden');
+
+                const optimizationPrompt = `Sen bir prompt mühendisliği uzmanısın. Bana verilen prompt'u analiz et ve onu daha açık, daha spesifik, daha etkili hale getirmek için iyileştirme önerileri sun. Önerilerini madde işaretleri halinde ve her öneriyi kısa bir açıklama ile birlikte sun. İşte prompt: "${prompt}"`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: optimizationPrompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        optimizedPromptText.textContent = text;
+                        optimizedPromptOutput.classList.remove('hidden');
+                    } else {
+                        optimizeErrorMessage.textContent = 'Prompt optimize edilemedi. Lütfen tekrar deneyin.';
+                        optimizeErrorMessage.classList.remove('hidden');
+                    }
+                } catch (error) {
+                    console.error('Error optimizing prompt:', error);
+                    optimizeErrorMessage.textContent = 'Bir hata oluştu. Lütfen ağ bağlantınızı kontrol edin veya daha sonra tekrar deneyin.';
+                    optimizeErrorMessage.classList.remove('hidden');
+                } finally {
+                    optimizePromptButton.disabled = false;
+                    optimizeButtonText.textContent = 'Optimize Et';
+                    optimizeSpinner.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
